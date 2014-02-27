@@ -27,6 +27,7 @@
 # PASTABOS ------------------------------
 
 #
+# Átraukti funkcijas rank ir xtfrm.
 # Sugalvoti uþdaviniø su funkcija reshape.
 # 
 
