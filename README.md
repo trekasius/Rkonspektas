@@ -48,3 +48,7 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
   - tam tikrų elementų paieška, praleistos reikšmės ir duomenų filtravimas,
   - vektoriaus elementų išrikiavimas ir duomenų lentelių pertvarkymai,
   - vektorių, matricų ir duomenų lentelių apjungimas.
+
+### Grafikų braižymas ###
+
+  - bazinė grafikų ir diagramų braižymo funkcija plot ir jos parametrai.
