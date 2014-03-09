@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2014-02-26 | 2014-03-06
+#   Sukurta: 2014-02-26 | 2014-03-09
 #
 
 
@@ -57,35 +57,9 @@ rm(list = ls())
 
 # Pagrindinë grafikø ir ávairiø diagramø braiþymo funkcija yra plot. Tai bendro 
 # pobûdþio (generic) funkcija, kuri skirtingo tipo duomenims atvaizduoti naudoja 
-# skirtingus metodus. Pavyzdþiui, kaip argumentà nurodþius du skaièiø vektorius 
-# x ir y, nubraiþoma taðkø su koordinatëmis (x, y) sklaidos diagrama, nurodþius 
-# daþniø lentelæ, nubraiþoma stulpelinë diagrama, nurodþius bet kokios skaitinës
-# R funkcijos pavadinimà arba uþraðius jos iðraiðkà, nubraiþomas tos funkcijos 
-# grafikas. Funkcija plot atpaþásta daþniausiai naudojamø statistiniø procedûrø 
-# rezultatø objektus ir jø atvaizdavimui naudoja specifinius metodus. Pavyzdþiui, 
-# kaip argumentà nurodþius tiesiniø modeliø procedûros lm rezultatø objektà, bus 
-# braiþoma paklaidø sklaidos diagrama ir kiti diagnostiniai to modelio grafikai, 
-# o nurodþius hierarchinio klasterizavimo procedûros hclust rezultatà, braiþoma 
-# dendrograma. Galima paminëti keletà daþniausiai naudojamø metodø:
-# 
-#   plot.default    --  skaitiniø kintamøjø x ir y sklaidos diagramos braiþymui,
-#   plot.function   --  ávairiø funkcijø grafikø braþymui,
-#   plot.data.frame --  skaitiniø duomenø lenteliø atvaizdavimui,
-#   plot.table      --  daþniø ir kryþminiø daþniø lenteliø atvaizdavimui,
-#   plot.histogram  --  histogramos braiþymui,
-#   plot.ts         --  laiko eilutës grafiko braiþymui,
-#   plot.ecdf       --  empirinës pasiskirstymo funkcijos braiþymui,
-#   plot.dendrogram --  dendrogramos atvaizdavimui,
-#   plot.lm         --  diagnostiniø tiesinio modelio grafikø braiþymui,
-#   plot.density    --  tankio funkcijos áverèio braiþymui.
-
-# Visus funkcijos plot metodus galima suþinoti naudojant funkcijà methods.
-methods(plot)
-
-
-# Pradþioje susipaþinsime su plot.default medodu, kuris naudojamas tais atvejais, 
-# kai sudaroma taðkø su koordinatëmis x ir y sklaidos diagrama. Pagrindiniai jos
-# parametrai:
+# skirtingus metodus. Susipaþinsime su plot.default medodu, kuris naudojamas tuo 
+# atveju, kai sudaroma taðkø su koordinatëmis x ir y sklaidos diagrama. Esminiai 
+# funkcijos plot parametrai:
 # 
 #      x -- x reikðmiø vektorius (abscisë),
 #      y -- y reikðmiø vektorius (ordinatë).
