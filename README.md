@@ -4,7 +4,9 @@
 
 ## Kaip naudoti? ##
 
-Konspektas parašytas taip, kad jį būtų galima ne tik skaityti kaip paprastą tekstą, bet kiekvienos temos failas tuo pačiu yra ir veikianti R programa (skriptas). Geriausias būdas mokytis iš šio konspekto -- atsisiųsti norimos temos failą, atsidaryti jį iš R (`File -> Open script...`) ir nuosekliai vykdyti komandas. Viename R faile išdėstyta viena platesnė tema, kuri dar suskirstyta į smulkesnius skyrelius. Visos naujos komandos ar jų panaudojimo metodai yra su išsamiais komentarais, o įgūdžiams įtvirtinti kiekvieno skyrelio gale yra užduočių savarankiškam darbui.
+Konspektas parašytas taip, kad jį būtų galima ne tik skaityti kaip paprastą tekstą, bet kiekvienos temos failas tuo pačiu yra ir veikianti R programa (skriptas). Geriausias būdas mokytis iš šio konspekto -- atsisiųsti norimos temos failą, atsidaryti jį iš R (`File -> Open script...`) ir nuosekliai vykdyti komandas. Svarbi pastaba! Kadangi programos kodas parašytas su lietuviškomis raidėmis, vykdant ją, turi būti įjungta LT klaviatūra.
+
+Viename R faile išdėstyta viena platesnė tema, kuri dar suskirstyta į smulkesnius skyrelius. Visos naujos komandos ar jų panaudojimo metodai yra su išsamiais komentarais, o įgūdžiams įtvirtinti kiekvieno skyrelio gale yra užduočių savarankiškam darbui.
 
 Temų išdėstymas nėra griežtas, tačiau konspektas pirmiausia orientuotas į pradedančiuosius, todėl temas apie duomenų struktūras ir veiksmus su duomenimis reikėtų perskaityti nuosekliai, priešingu atveju bus sunku suprasti kitas temas. Konspektą galima naudoti ir kaip tipinių duomenų analizės situacijų žinyną, todėl jis gali būti naudingas ir jau turintiems šiek tiek programavimo su R patirties.
 
