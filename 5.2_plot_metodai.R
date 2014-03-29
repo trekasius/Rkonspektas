@@ -24,22 +24,12 @@
 #      * plot.table
 #      * plot.factor
 #
-#   4. Metodai histogramai ir tankio funkcijai braiþyti:
-#      * plot.histogram
-#      * plot.density
-#      * plot.ecdf
-#
-#   5. Keletas kitø funkcijos plot metodø:
-#      * plot.ts
-#      * plot.dendrogram
-#      * plot.lm
-#
 
 
 # PASTABOS ------------------------------
 
 #
-# Paraðyti 4 ir 5 skyrius. Sugalvoti jiems uþdavinius.
+# Jokiø pastabø nëra.
 # 
 
 
@@ -80,10 +70,10 @@ rm(list = ls())
 #   plot.factor     --  kategoriniø kintamøjø (faktoriø) atvaizdavimui,
 #   plot.histogram  --  histogramos braiþymui,
 #   plot.density    --  tankio funkcijos áverèio braiþymui,
-#   plot.ts         --  laiko eilutës grafiko braiþymui,
 #   plot.ecdf       --  empirinës pasiskirstymo funkcijos braiþymui,
+#   plot.ts         --  laiko eilutës grafiko braiþymui,
 #   plot.dendrogram --  dendrogramos atvaizdavimui,
-#   plot.lm         --  diagnostiniø tiesinio modelio grafikø braiþymui.
+#   plot.lm         --  tiesinio modelio diagnostiniø grafikø braiþymui.
 
 # Visus funkcijos plot metodus galima suþinoti naudojant funkcijà methods.
 methods(plot)
