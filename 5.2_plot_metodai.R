@@ -363,7 +363,7 @@ plot(g)
 # bus skaitinio kintamojo sklaidos diagramos atskirose grupëse pagal kategorinio
 # kintamojo reikðmes. Skiriasi tik atvaizdavimo bûdas.
 
-s <- c(0.6, 3.4, 6.1, 0.7, 5.2, 1.4, 2.3, 3.4, 2.5, 6.4, 2.7, 4.1, 2.9, 0.1, 7.5)
+s <- c(0.6, 3.4, 6.1, 0.7, 5.2, 1.4, 2.3, 3.4, 2.5, 9.4, 2.7, 4.1, 2.9, 0.1, 7.5)
 k <- c("T", "N", "N", "T", "T", "T", "N", "T", "T", "N", "T", "N", "T", "T", "N")
 
 k <- factor(k, levels = c("T", "N"), labels = c("Taip", "Ne"))
