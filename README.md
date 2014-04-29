@@ -54,4 +54,5 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
 ### Grafikų braižymas ###
 
   - bazinė grafikų ir diagramų braižymo funkcija plot ir jos parametrai,
-  - pagrindiniai funkcijos plot metodai.
+  - pagrindiniai funkcijos plot metodai,
+  - aukšto lygio grafinės funkcijos.
