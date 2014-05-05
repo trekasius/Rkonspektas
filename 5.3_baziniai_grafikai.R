@@ -119,7 +119,7 @@ curve(fun.rt, -5, 5)
 fun.si <- function(x, k) {
   y <- sin(k*x)/k
   return(y)
- }
+}
 
 # Ði funkcija yra dviejø kintamøjø funkcija. Tam, kad funkcija curve jà parodytø
 # teisingai, vienà parametrà fiksuosime -- priskirsime jam reikðmæ. Tokiu bûdu
@@ -510,16 +510,16 @@ hist(x, breaks = pretty(x), labels = TRUE)
 # skirstinio tankio funkcijos grafikà, o kadangi skirstinio parametrai neþinomi,
 # juos ávertinsime ið imties.
 
-y <- as.numeric(nhtemp)
+t <- as.numeric(nhtemp)
 
-vid <- mean(y)
-std <- sd(y)
+vid <- mean(t)
+std <- sd(t)
 
 # Pirma nubraiþome histogramà. Kadangi ant jos virðaus braiþysime tankio f-jos
 # grafikà, èia reikalinga ne daþniø, o santykiniø daþniø histograma. Jà gauname
 # parametrui freq priskirdami reikðmæ FALSE.
 
-hist(y, freq = FALSE, xlim = c(46, 56), main = "Temperatûros pasiskirstymas")
+hist(t, freq = FALSE, xlim = c(46, 56), main = "Temperatûros pasiskirstymas")
 curve(dnorm(x, mean = vid, sd = std), col = "red", add = TRUE)
 
 
