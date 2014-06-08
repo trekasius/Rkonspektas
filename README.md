@@ -55,4 +55,5 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
 
   - bazinė grafikų ir diagramų braižymo funkcija plot ir jos parametrai,
   - pagrindiniai funkcijos plot metodai,
-  - aukšto lygio grafinės funkcijos.
+  - aukšto lygio grafinės funkcijos: kreivės, stulpelinės diagramos, histogramos,
+  - žemo lygio grafinės funkcijos: papildomi taškai ir tiesės.
