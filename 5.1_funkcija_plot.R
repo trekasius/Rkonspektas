@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2014-02-26 | 2014-03-09
+#   Sukurta: 2014-02-26 | 2014-03-09 | 2014-06-18
 #
 
 
@@ -28,6 +28,7 @@
 #      * parametras asp 
 #      * parametras ann 
 #      * parametras frame 
+#      * parametrai xaxt ir yaxt
 #      * parametras axes 
 #
 
@@ -245,6 +246,8 @@ plot(x, y, pch = 20, col = factor(y < 0))
 #    asp -- nustatomas grafiko y/x kraðtiniø santykis,
 #    ann -- jei FALSE, grafikas rodomas be antraðèiø,
 #  frame -- jei FALSE, grafikas braiþomas be rëmelio,
+#   xaxt -- jei "n", Ox aðis nebraiþoma,
+#   yaxt -- jei "n", Oy aðis nebraiþoma,
 #   axes -- jei FALSE, grafikas braiþomas be aðiø.
 
 
@@ -333,6 +336,11 @@ plot(x, y, main = "Diagramos antraðtë", xlab = "x", ylab = "f(x)", ann = FALSE)
 # Naudojant parametrà frame, galima nuimti grafiko rëmelá. Grafiko aðys iðlieka.
 
 plot(x, y, frame = FALSE)
+
+# Parametrams xaxt arba yaxt nurodþius reikðmæ "n", galima uþdrausti aðies Ox ar 
+# Oy braiþymà. Tokiu atveju grafiko rëmelis iðlieka.
+
+plot(x, y, xaxt = "n")
 
 # Naudojant parametrà axes, galima nurodyti, kad grafikas bûtø braiþomas be aðiø.
 # Tokiu atveju nelieka ir rëmelio, taèiau iðlieka grafiko aðiø pavadinimai.
