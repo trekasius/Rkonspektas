@@ -57,4 +57,5 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
   - pagrindiniai funkcijos plot metodai,
   - aukšto lygio grafinės funkcijos: kreivės, stulpelinės diagramos, histogramos,
   - žemo lygio grafinės funkcijos: papildomi taškai ir tiesės,
+  - ašių, grafiko antraštės ir kitas papildomas tekstas,
   - grafiko ašių, rėmelio ir tinklelio formavimas.
