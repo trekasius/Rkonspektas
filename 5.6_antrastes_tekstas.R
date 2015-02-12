@@ -348,7 +348,7 @@ mtext(Sys.Date(), side = 1, line = 3, adj = 1, font = 11, cex = 0.8, col = 8)
 # ir infliacijos lygio duomenis. Èia tokie kintamieji: ðalis, metai, nedarbas ir 
 # infliacijos lygis.
 
-d <- read.table(header = TRUE, text = "
+t <- textConnection("
 Ðalis    Metai  N     I
 Lietuva  2011   15.3  4.1
 Latvija  2011   16.2  4.4
@@ -363,6 +363,8 @@ Latvija  2013   11.6  0.4
 Estija   2013   8.9   3.3
 Ðvedija  2013   8.1   0.2")
 
+d <- read.table(file = t, header = TRUE)
+d
 
 # Pradþioje nubraiþysime paprastà infliacijos ir nedarbo lygio sklaidos diagramà.
 
