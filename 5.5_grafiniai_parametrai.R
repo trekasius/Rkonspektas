@@ -16,7 +16,7 @@
 #      * funkcija par
 #      * parametras no.readonly
 #      
-#   2. Bendro pobûdþio grafiniai parametrai
+#   2. Bendro pobûdþio grafiniai parametrai:
 #      * ann
 #      * adj
 #      * bty
@@ -24,7 +24,15 @@
 #      * lwd
 #      * pch
 #
-#   3. Su aðiø braiþymu susijæ grafiniai parametrai:
+#   3. Grafiko spalvos, mastelis ir antraðèiø ðriftas:
+#      * bg
+#      * fg
+#      * col
+#      * cex
+#      * font
+#      * family
+#
+#   4. Su aðiø braiþymu susijæ grafiniai parametrai:
 #      * xaxt ir yaxt
 #      * xaxp ir yaxp
 #      * xaxs ir yaxs
@@ -33,7 +41,7 @@
 #      * tck ir tcl
 #      * las
 #
-#   2. Parametrai, kuriø reikðmës pakeisti negalima:
+#   5. Parametrai, kuriø reikðmës pakeisti negalima:
 #      * csi, cin, cra, cxy
 #      * din
 #      * page
@@ -44,6 +52,7 @@
 
 #
 # Apraðyti parametrus, kuriø reikðmës keièiamos tik per funkcijà par.
+# Suraðyti uþduotis.
 #
 
 
@@ -103,7 +112,6 @@ curve(sin, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "sin(x)")
 
 par(bg = "gray", fg = "red")
 curve(sin, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "sin(x)")
-curve(cos, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "cos(x)")
 
 par(bg = "transparent", fg = "black")
 curve(sin, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "sin(x)")
@@ -261,13 +269,13 @@ curve(sin, -pi, pi, main = "Grafiko antraðtë", frame.plot = FALSE)
 # Parametras lty nustato linijos tipà. Jam galima priskirti tokias simbolines ar
 # jas atitinkanèias skaitines reikðmes:
 # 
-#      blank -- 0
-#      solid -- 1
-#     dashed -- 2
-#     dotted -- 3
-#    dotdash -- 4
-#   longdash -- 5
-#    twodash -- 6
+#          0 -- blank,
+#          1 -- solid,
+#          2 -- dashed,
+#          3 -- dotted,
+#          4 -- dotdash,
+#          5 -- longdash,
+#          6 -- twodash.
 
 # Paprastai diagramos braiþomos iðtisine (solid) linija. Jei viename grafike yra
 # linijos, kurios turi iðsiskirti, jø tipà galima pakeisti per grafinæ funkcijà.
@@ -307,7 +315,7 @@ plot(dist ~ speed, data = cars)
 
 # Parametrui galima priskirti ir bet koká tekstiná simbolá ið klaviatûros. Pvz.,
 # jei grafike yra labai daug taðkø, jø vaizdavimui galima parinkti áprasto taðko
-# simbolá. Parametro reikðmæ pakeisime per grafinæ funkcijà.
+# ið klaviatûros simbolá. Parametro reikðmæ pakeisime per grafinæ funkcijà.
 
 plot(rnorm(100000), rnorm(100000), pch = ".")
 
@@ -323,15 +331,146 @@ plot(rnorm(100000), rnorm(100000), pch = ".")
 
 
 # --------------------------------------- #
-# SPALVA, SIMBOLIO DYDIS IR ÐRIFTAS       #
+# GRAFIKO SPALVOS, MASTELIS IR ÐRIFTAS    #
 # --------------------------------------- #
 
-#  col   col.axis  col.lab  col.main  col.sub
-#  cex   cex.axis  cex.lab  cex.main  cex.sub   
-#  font font.axis font.lab font.main font.sub
-#  family
-#  bg
-#  fg
+# Dalis grafiniø parametrø reguliuoja grafiko fono, taðkø, linijø, aðiø, rëmelio
+# spalvas, antraðèiø ðriftà ir simboliø dydá.
+# 
+#         bg -- grafiko fono spalva,
+#         fg -- linijø, taðkø, koordinaèiø aðiø ir rëmelio spalva,
+#        col -- grafiko linijø ir taðkø spalva,
+#        cex -- grafiko taðkø ir antraðèiø dydis,
+#       font -- ðrifo tipas,
+#     family -- ðrifto ðeima.
+
+# Parametras bg nustato grafiko fono spalvà, o parametras fg -- bendrà diagramos
+# taðkø ir linijø, koordinaèiø aðiø ir rëmelio spalvà. Fono spalva priklauso nuo
+# árenginio tipo, bet paprastai fonas bûna baltas, o kitos linijos juodos.
+
+par(c("bg", "fg"))
+
+# Pavyzdþiui, pakeisime fono spalvà á pilkà, o linijø ir taðkø spalvà á raudonà.
+
+par(bg = "gray", fg = "red")
+plot(dist ~ speed, data = cars, pch = 20)
+
+
+# Parametras col taip pat nustato taðkø, linijø ir rëmelio spalvà, taèiau negali
+# pakeisti koordinaèiø aðiø spalvos!
+
+par(col = "red")
+plot(dist ~ speed, data = cars, pch = 20, frame = FALSE)
+
+
+# Diagramos taðko simbolio, antraðèiø teksto, aðies padalø ir jø pavadinimø dydá 
+# nustato mastelio parametras cex. Didinant parametro reikðmæ, taðkai ir tekstas 
+# didëja, maþinant -- maþëja. Standartinë parametro reikðmë lygi 1.
+
+# Pavyzdþiui, jeigu antraðtës tekstas ir diagramos taðkai turi bûti 20 % didesni, 
+# tai parametrui cex priskiriame reikðmæ 1.2.
+
+par(cex = 1.2)
+plot(dist ~ speed, data = cars, pch = 20)
+
+
+# Parametras font nustato, koks ðriftas naudojamas tekstui ant grafiko uþraðyti.
+# Galimos reikðmës:
+#
+#          1 -- plain text,
+#          2 -- bold face,
+#          3 -- italic,
+#          4 -- bold italic.
+
+# Pvz., nustatysime, kad tekstas ant grafiko bûtø raðomas pastorintu ðriftu. Tam
+# parametrui font priskiriame reikðmæ 2. Tekstà ant grafiko uþraðome su funkcija
+# text.
+
+par(font = 2)
+plot(1, 1, type = "n", main = "Grafiko antraðtë")
+text(1, 1, "Tekstas pastorintu ðriftu.")
+
+
+# Ðriftø, kuriuo raðomos grafiko ir aðiø antraðtës bei padalø pavadinimai, ðeimà 
+# nusako parametras family. Standartinë parametro reikðmë yra "", kiti variantai 
+# tokie:
+# 
+#      serif -- lotyniðkas ðriftas, pvz., Times,
+#       sans -- groteskinis ðriftas, pvz., Aria, Helvetica,
+#       mono -- pastovaus ploèio ðriftas, pvz., Courier.
+
+# Pavyzdþiui, pakeisime parametro reikðmæ taip, kad visos grafiko antraðtës bûtø
+# raðomos pastovaus ploèio ðriftu.
+
+par(family = "mono")
+plot(dist ~ speed, data = cars, main = "Grafiko antraðtë")
+
+
+# Keièiant parametrø col, cex ir font reikðmes, nustatoma bendra ávairiø grafiko 
+# daliø spalva, vienodas mastelis arba tas pats ðrifto tipas. Spalvà, mastelá ir
+# ðriftà galima pakeisti atskirai aðims, aðiø antraðtëms, bendrai ir papildomai 
+# grafiko antraðtëms. Tam naudojami ðie grafiniai parametrai:
+# 
+#     col.axis    cex.axis    font.axis
+#     col.lab     cex.lab     font.lab
+#     col.main    cex.main    font.main
+#     col.sub     cex.sub     font.sub
+
+# Pavyzdþiui, nubraiþysime grafikà, kuriame skaièiai ties padalomis 20 % didesni,
+# o aðies antraðtës uþraðytos pasvirusiu pastorintu ðriftu.
+
+par(cex.axis = 1.2, font.lab = 4)
+plot(dist ~ speed, data = cars, main = "Grafiko antraðtë", frame = F)
+
+
+# NAUDINGA ------------------------------
+
+# Spalvos, mastelio ir ðrifto parametrams reikðmæ priskiriant per grafines f-jas,
+# jø poveikis yra lokalus, t.y. galioja tik vienam konkreèiam grafikui. Svarbiau
+# yra tai, kad ðie parametrai skirtingai veikia reikðmæ priskiriant per f-jà par
+# ir per grafinæ funkcijà.
+
+# Pavyzdþiui, parametrui bg reikðmæ priskiriant per grafinæ funkcijà, jis keièia
+# taðko simbolio fonà, bet ne grafiko fonà. Tai galima pastebëti, jei parametrui
+# pch priskiriama reikðmë 21, 22 ir t.t. iki 25.
+
+plot(dist ~ speed, data = cars, bg = "red", pch = 21)
+
+# Pavyzdþiui, parametrui fg reikðmæ priskiriant per grafinæ funkcijà, jis keièia 
+# tik aðiø ir rëmelio spalvà, bet nekeièia kitø grafiko linijø ir taðkø spalvos.
+
+plot(dist ~ speed, data = cars, fg = "red")
+
+
+# Pavyzdþiui, parametro cex reikðmæ priskiriant per grafinæ funkcijà, pakeièiame
+# tik taðko simbolio dydá.
+
+plot(dist ~ speed, data = cars)
+plot(dist ~ speed, data = cars, cex = 2)
+
+
+# Analogiðkai, parametro col reikðmæ priskiriant per grafinæ funkcijà, nustatome
+# tik taðko simbolio spalvà.
+
+plot(dist ~ speed, data = cars, pch = 20)
+plot(dist ~ speed, data = cars, pch = 20, col = "red")
+
+
+# Parametras font, jeigu jo reikðmë priskiriama per grafinæ funkcijà, keièia tik 
+# padalø skaièiø ðriftà.
+
+plot(dist ~ speed, data = cars, pch = 20)
+plot(dist ~ speed, data = cars, pch = 20, font = 2)
+
+
+# UÞDUOTIS ------------------------------ 
+
+# 1. 
+#    
+# 2. 
+#    
+# 3. 
+#    
 
 
 # --------------------------------------- #
