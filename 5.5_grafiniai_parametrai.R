@@ -249,7 +249,7 @@ hist(Nile, main = "Histograma be rëmelio, nors jis turëtø bûti")
 
 # Parametrui bty galima priskirti reikðmes "l", "7", "c", "u", "]". Tokiu atveju
 # rëmelis bus braiþomas ne ið visø keturiø pusiø. Pavyzdþiui, reikðmë "l" nurodo,
-# kad rëmelis bus braiþomas ið kairës ir apaèios.
+# kad rëmelis bus braiþomas tik ið kairës ir apaèios.
 
 par(bty = "l")
 curve(sin, -pi, pi)
@@ -322,12 +322,13 @@ plot(rnorm(100000), rnorm(100000), pch = ".")
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. 
-#    
-# 2. 
-#    
-# 3. 
-#    
+# 1. Naudojant parametrà lty, nubraiþykite funkcijos y = sin(x) grafikà, kuriame
+#    pati sinusoidë bûtø nematoma! Sugalvokite dar kitø bûdø nubraiþyti nematomà
+#    kreivæ.
+# 2. Viename grafike nubraiþykite funkcijø sin(x) ir cos(x) grafikus. Kurià nors
+#    vienà kreivæ pavaizduokite iðtisine, o kità -- punktyrine linija.
+# 3. Pakeiskite grafinius parametrus taip, kad visos diagramos bûtø braiþomos be
+#    rëmelio, taðko simbolis pakeistas á uþpildytà taðkà, o linijos plonesnës.
 
 
 # --------------------------------------- #
@@ -335,11 +336,11 @@ plot(rnorm(100000), rnorm(100000), pch = ".")
 # --------------------------------------- #
 
 # Dalis grafiniø parametrø reguliuoja grafiko fono, taðkø, linijø, aðiø, rëmelio
-# spalvas, antraðèiø ðriftà ir simboliø dydá.
+# spalvas, antraðèiø ðriftà ir simboliø dydá:
 # 
 #         bg -- grafiko fono spalva,
-#         fg -- linijø, taðkø, koordinaèiø aðiø ir rëmelio spalva,
-#        col -- grafiko linijø ir taðkø spalva,
+#         fg -- linijø, taðkø, rëmelio ir koordinaèiø aðiø spalva,
+#        col -- linijø, taðkø, rëmelio spalva,
 #        cex -- grafiko taðkø ir antraðèiø dydis,
 #       font -- ðrifo tipas,
 #     family -- ðrifto ðeima.
@@ -356,7 +357,7 @@ par(bg = "gray", fg = "red")
 plot(dist ~ speed, data = cars, pch = 20)
 
 
-# Parametras col taip pat nustato taðkø, linijø ir rëmelio spalvà, taèiau negali
+# Parametras col taip pat nustato linijø, taðkø ir rëmelio spalvà, taèiau negali
 # pakeisti koordinaèiø aðiø spalvos!
 
 par(col = "red")
@@ -408,7 +409,7 @@ plot(dist ~ speed, data = cars, main = "Grafiko antraðtë")
 
 # Keièiant parametrø col, cex ir font reikðmes, nustatoma bendra ávairiø grafiko 
 # daliø spalva, vienodas mastelis arba tas pats ðrifto tipas. Spalvà, mastelá ir
-# ðriftà galima pakeisti atskirai aðims, aðiø antraðtëms, bendrai ir papildomai 
+# ðriftà galima pakeisti atskirai aðims, aðiø antraðtëms, bendrai bei papildomai 
 # grafiko antraðtëms. Tam naudojami ðie grafiniai parametrai:
 # 
 #     col.axis    cex.axis    font.axis
@@ -428,7 +429,7 @@ plot(dist ~ speed, data = cars, main = "Grafiko antraðtë", frame = F)
 # Spalvos, mastelio ir ðrifto parametrams reikðmæ priskiriant per grafines f-jas,
 # jø poveikis yra lokalus, t.y. galioja tik vienam konkreèiam grafikui. Svarbiau
 # yra tai, kad ðie parametrai skirtingai veikia reikðmæ priskiriant per f-jà par
-# ir per grafinæ funkcijà.
+# ir per grafinæ funkcijà!
 
 # Pavyzdþiui, parametrui bg reikðmæ priskiriant per grafinæ funkcijà, jis keièia
 # taðko simbolio fonà, bet ne grafiko fonà. Tai galima pastebëti, jei parametrui
@@ -442,18 +443,18 @@ plot(dist ~ speed, data = cars, bg = "red", pch = 21)
 plot(dist ~ speed, data = cars, fg = "red")
 
 
-# Pavyzdþiui, parametro cex reikðmæ priskiriant per grafinæ funkcijà, pakeièiame
-# tik taðko simbolio dydá.
-
-plot(dist ~ speed, data = cars)
-plot(dist ~ speed, data = cars, cex = 2)
-
-
 # Analogiðkai, parametro col reikðmæ priskiriant per grafinæ funkcijà, nustatome
 # tik taðko simbolio spalvà.
 
 plot(dist ~ speed, data = cars, pch = 20)
 plot(dist ~ speed, data = cars, pch = 20, col = "red")
+
+
+# Pavyzdþiui, parametro cex reikðmæ priskiriant per grafinæ funkcijà, pakeièiame
+# tik taðko simbolio dydá.
+
+plot(dist ~ speed, data = cars)
+plot(dist ~ speed, data = cars, cex = 2)
 
 
 # Parametras font, jeigu jo reikðmë priskiriama per grafinæ funkcijà, keièia tik 
@@ -465,12 +466,12 @@ plot(dist ~ speed, data = cars, pch = 20, font = 2)
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. 
-#    
-# 2. 
-#    
-# 3. 
-#    
+# 1. Nubraiþykite sklaidos diagramà plot(dist ~ speed, data = cars). Nustatykite
+#    grafinius parametrus taip, kad taðkai bûtø raudoni, o aðys mëlynos spalvos.
+#    Sugalvokite kelis skirtingus bûdus.
+# 2. Tarkime, kad mastelio parametro cex reikðmë priskiriama taip: par(cex = 2).
+#    Sugalvokite bûdà, kaip nubraiþyti diagramà, kad antraðtës joje bûtø áprasto
+#    dydþio, lyg parametro cex reikðmë bûtø lygi 1.
 
 
 # --------------------------------------- #
@@ -664,10 +665,13 @@ curve(sin, -pi, pi, las = 1)
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. Naudojant parametrà tck, nubraiþykite bet kokios funkcijos y = f(x) grafikà, 
-#    kuris bûtø sugraduotas (paprastai tam naudojama funkcija grid).
-# 2. Nubraiþykite bet kokios funkcijos y = f(x) grafikà su koordinaèiø aðimis be
-#    padalø brûkðneliø.
+# 1. Nubraiþykite sklaidos diagramà plot(dist ~ speed, data = cars). Nustatykite
+#    tokias grafiniø parametrø reikðmes, kad Ox aðies ribos bûtø 10 ir 20, o jos
+#    padalø skaièius (áskaitant ir galus) lygus 6.
+# 2. Naudojant parametrà tck, nubraiþykite bet kokios funkcijos y = f(x) grafikà 
+#    su tinkleliu (paprastai tam naudojama funkcija grid).
+# 3. Nubraiþykite bet kokios funkcijos y = f(x) grafikà su koordinaèiø aðimis be
+#    padalø brûkðneliø, bet su skaièiais ties padalomis.
 
 
 # --------------------------------------- #
