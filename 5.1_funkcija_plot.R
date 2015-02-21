@@ -244,11 +244,11 @@ plot(x, y, pch = 20, col = factor(y < 0))
 #   xlim -- aðies Ox reikðmiø kitimo ribos, vektorius c(x1, x2),
 #   ylim -- aðies Oy reikðmiø kitimo ribos, vektorius c(y1, y2),
 #    asp -- nustatomas grafiko y/x kraðtiniø santykis,
-#    ann -- jei FALSE, grafikas rodomas be antraðèiø,
 #  frame -- jei FALSE, grafikas braiþomas be rëmelio,
+#   axes -- jei FALSE, grafikas braiþomas be aðiø,
+#    ann -- jei FALSE, grafikas rodomas be antraðèiø,
 #   xaxt -- jei "n", Ox aðis nebraiþoma,
-#   yaxt -- jei "n", Oy aðis nebraiþoma,
-#   axes -- jei FALSE, grafikas braiþomas be aðiø.
+#   yaxt -- jei "n", Oy aðis nebraiþoma.
 
 
 # Pagrindinë grafiko antraðtë suformuojama naudojant parametrà main. Jo reikðmë
@@ -325,7 +325,20 @@ plot(x, y, asp = 1/50)
 plot(x, y, asp = 1/200)
 
 
+# Naudojant loginá parametrà frame.plot, galima uþdrausti grafiko rëmelá.
+
+plot(x, y, frame.plot = FALSE)
+
+# Naudojant parametrà axes, galima nurodyti, kad grafikas bûtø braiþomas be aðiø.
+# Tokiu atveju nelieka ir rëmelio, taèiau iðlieka grafiko aðiø pavadinimai.
+
+plot(x, y, axes = FALSE)
+
+
 # NAUDINGA ------------------------------
+
+# Paèias bendriausias grafikø braiþymo taisykles reguliuoja specialûs grafiniai
+# parametrai.
 
 # Naudojant parametrà ann, galima uþdrausti rodyti visas diagramos antraðtes ið 
 # karto, net jei jos ir yra nustatytos atitinkamais parametrais.
@@ -333,19 +346,11 @@ plot(x, y, asp = 1/200)
 plot(x, y, main = "Diagramos antraðtë", xlab = "x", ylab = "f(x)")
 plot(x, y, main = "Diagramos antraðtë", xlab = "x", ylab = "f(x)", ann = FALSE)
 
-# Naudojant parametrà frame, galima nuimti grafiko rëmelá. Grafiko aðys iðlieka.
-
-plot(x, y, frame = FALSE)
 
 # Parametrams xaxt arba yaxt nurodþius reikðmæ "n", galima uþdrausti aðies Ox ar 
 # Oy braiþymà. Tokiu atveju grafiko rëmelis iðlieka.
 
 plot(x, y, xaxt = "n")
-
-# Naudojant parametrà axes, galima nurodyti, kad grafikas bûtø braiþomas be aðiø.
-# Tokiu atveju nelieka ir rëmelio, taèiau iðlieka grafiko aðiø pavadinimai.
-
-plot(x, y, axes = FALSE)
 
 
 # UÞDUOTIS ------------------------------ 
