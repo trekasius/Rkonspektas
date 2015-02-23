@@ -35,7 +35,7 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
   - kintamųjų išvedimas į ekraną ir jų struktūros užrašymas.
 
 ### Programavimas su R ###
-
+ 
   - loginių sąlygų užrašymas ir loginės funkcijos,
   - sąlygos konstrukcija if-else ir funkcija ifelse,
   - ciklai for, while ir repeat, ciklo nutraukimo komandos,
@@ -58,4 +58,5 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
   - aukšto lygio grafinės funkcijos: kreivės, stulpelinės diagramos, histogramos,
   - žemo lygio grafinės funkcijos: papildomi taškai ir tiesės,
   - ašių, grafiko antraštės ir kitas papildomas tekstas,
-  - grafiko ašių, rėmelio ir tinklelio formavimas.
+  - grafiko ašių, rėmelio ir tinklelio formavimas,
+  - grafiniai parametrai ir jų reikšmės nustatymas.
