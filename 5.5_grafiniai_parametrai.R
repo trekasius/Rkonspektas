@@ -571,7 +571,7 @@ abline(v = -pi, col = "red")
 # Yra dar keletas grafiniø parametrø, kurie kontroliuoja abiejø koordinaèiø aðiø 
 # ir atskirø jø daliø braiþymà:
 # 
-#        lab -- apytikslis aðies padalø skaièius,
+#        lab -- apytikslis Ox ir Oy aðiø padalø skaièius,
 #        mgp -- aðies antraðtës, padalø teksto ir aðies linijos pozicija,
 #        tck -- padalø ilgis santykiniais vienetais,
 #        tcl -- padalø ilgis eilutës aukðèio vienetais,
@@ -675,25 +675,154 @@ curve(sin, -pi, pi, las = 1)
 
 
 # --------------------------------------- #
-#                                         #
+# GRAFIKO IÐMATAVIMAI IR PARAÐTËS         #
 # --------------------------------------- #
 
-#  ask
-#  new
-#  fig, fin
-#  #  mai, mar, mex
-#  mfcol, mfrow
-#  mfg
-#  oma, omd, omi
-#  pin, plt, ps, pty
-#  xlog, ylog,
-#  ylbias
-#  lheight
-#  crt, srt
-#  lend, ljoin, lmitre
-#  xpd
-#  usr
-#  err, mkh, smo
+# Grafiniame lange yra kelios viena á kità ádëtos grafiko sritys. Pati maþiausia
+# sritis (plot) apribota aðimis arba rëmeliu ir joje braiþoma diagrama. Diagrama 
+# paprastai turi paraðtes, kuriose yra viso grafiko ir aðiø antraðtës. Kartu su 
+# paraðtëmis diagrama sudaro paveikslëlio sritá (figure). Paveikslëlis turi savo
+# paraðtes, su kuriomis ir uþima visà grafiná langà (device). Paraðtës priklauso 
+# nuo ðiø grafiniø parametrø:
+#
+#        mar -- diagramos paraðèiø plotis eiluèiø skaièiumi,
+#        mai -- diagramos paraðèiø plotis coliais,
+#        oma -- viso grafiko paraðèiø plotis eiluèiø skaièiumi,
+#        omi -- viso grafiko paraðèiø plotis coliais.
+#
+# Paraðtës turi savo numerius: 1 -- apaèia, 2 -- kairë, 3 -- virðus, 4 -- deðinë.
+# Paraðtës ploèio parametrui priskiriamas vektorius su keturiø paraðèiø dydþiais.
+
+# Kadangi diagramos paraðtëse raðomi koordinaèiø aðiø pavadinimai, padalø vardai
+# ir viso grafiko antraðtë, tai kiekvienos pusës paraðtës plotis skiriasi. Pvz.,
+# standartinës diagramos paraðtës eilutëmis yra c(5.1, 4.1, 4.1, 2.1).
+
+par("mar")
+
+# Pavyzdþiui, nustatysime, kad paraðtës ið visø pusiø bûtø dviejø eiluèiø ploèio.
+
+par(mar = c(2, 2, 2, 2))
+curve(sin, -pi, pi)
+
+graphics.off()
+
+# Galima pastebëti, kad diagramoje nesimato aðiø pavadinimø. Taip atsitiko todël,
+# kad koordinaèiø aðiø pavadinimai raðomi ketvirtoje eilutëje, o paraðèiø plotis
+# tik dvi eilutës.
+
+
+# Jei nenurodyta kitaip, paveikslëlio paraðtës lygios nuliui, todël paveikslëlis
+# uþima visà grafiná langà. Pavyzdþiui, nustatysime, kad paveikslo paraðtës bûtø
+# po dvi eilutes ið visø pusiø. Papildomai nubraiþysime vidiná iðoriniø paraðèiø 
+# rëmelá.
+
+par(oma = c(2, 2, 2, 2))
+curve(sin, -pi, pi)
+box("inner")
+
+graphics.off()
+
+
+# Paprastai vienas grafikas uþima visà grafiná langà, taèiau ðià taisyklæ galima
+# pakeisti. Kokià dalá grafinio lango uþims ávairios grafiko sritys nustato keli
+# grafiniai parametrai:
+#
+#        omd -- nurodo iðoriniø grafiko paraðèiø koordinates grafiniame lange,
+#        fig -- nurodo, kokià dalá grafiko sritis uþims iðoriniø paraðèiø viduje,
+#        plt -- nurodo, kokià dalá diagramos sritis uþims grafiko srityje,
+#        xpd -- nurodo kokiose ribose galima braiþyti taðkus ir linijas,
+#        usr -- koordinaèiø aðiø ribos,
+#        pty -- nurodo, ar grafikas bus kvadratinis, ar staèiakampis,
+#        fin -- nurodo viso grafiko dydá grafiniame lange,
+#        pin -- nurodo diagramos (aðiø ribose) dydá.
+
+
+# Parametras omd nustato, kokiose grafinio lango ribose bus formuojamas grafikas.
+# Jam priskiriamas 4 elementus turintis vektorius c(xmin, xmax, ymin, ymax), kur 
+# elementø reikðmës yra ið intervalo [0, 1]. Tos reikðmës nurodo grafikui skirto 
+# staèiakampio ribas grafiniame lange.
+
+# Jei grafikas neturi iðoriniø paraðèiø, tada jis uþima visà grafiná langà. Tada
+# parametras omd = c(0, 1, 0, 1).
+
+par("omd")
+
+# Nustatysime, kad grafikas uþimtø apatinæ grafinio lango pusæ. Kad bûtø matyti,
+# kur yra grafiko ribos, nubraiþysime vidiná grafiko rëmelá.
+
+par(omd = c(0, 1, 0, 0.5))
+curve(sin, -pi, pi)
+box("inner")
+
+graphics.off()
+
+
+# Nuo grafinio parametro fig priklauso, kokià dalá grafiko sritis (figure) uþims 
+# iðorinëmis paraðtëmis apribotame staèiakampyje. Jei iðorinës paraðtës nulinës,
+# tada parametras fig nurodo, kokià dalá grafikas uþims visame grafiniame lange.
+# Paprastai grafiko sritis uþima visà iðorinëmis paraðtëmis apribotà staèiakampá,
+# kuris tiesiog sutampa su grafiniu langu. Tai rodo pradinës parametrø reikðmës:
+
+par(c("omd", "fig"))
+
+# Pvz., nustatysime, kad grafikas uþimtø apatinæ iðorinëmis paraðtëmis apribotos
+# srities dalá.
+
+par(fig = c(0, 1, 0, 0.5))
+curve(sin, -pi, pi)
+box("figure")
+
+graphics.off()
+
+# Vizualiai ðis pavyzdys tarsi niekuo nesiskiria nuo ankstesnio, taèiau atidþiau
+# paþvelgus, galima pastebëti, kad tà paèià grafinio lango dalá uþima skirtingos
+# grafiko sritys. Pirmuoju atveju tuðèias plotas ið virðaus yra iðorinë paraðtë,
+# antruoju atveju iðorinës paraðtës nulinës, o grafikas uþima tik pusæ paveikslo.
+
+# Pvz., parametrø reikðmes nustatysime taip, kad grafikas uþimtø dalá paveikslui 
+# skirtos srities, o paveikslas uþimtø tik dalá viso grafinio lango. Taip galima
+# pastebëti, kad skirtingos grafiko sritys ádëtos viena á kità.
+
+par(omd = c(0.1, 0.9, 0.1, 0.9), fig = c(0.1, 0.9, 0.1, 0.9))
+curve(sin, -pi, pi)
+box("figure", col = "red")
+box("inner", col = "blue")
+
+graphics.off()
+
+
+# Parametras plt kontroliuoja, kokià dalá grafike (figure) uþima diagrama (plot).
+# Kadangi diagramà riboja aðys, aðiø padalos, skaièiai ties padalomis, antraðtës
+# yra uþ diagramos ribø. Dël tos prieþasties diagrama neuþima viso grafiko ploto.
+
+par("plt")
+
+# Pavyzdþiui, parametro plt reikðmæ pakeisime taip, kad grafike bûtø matytis tik 
+# aðiø padalos ir jø pavadinimai, bet aðiø antraðtës jau nesimatytø.
+
+par(plt = c(0.06, 0.99, 0.06, 0.99))
+curve(sin, -pi, pi, xlab = "Ox aðies antraðtës nesimato")
+
+graphics.off()
+
+
+# Loginis parametras xpd nurodo, kurios srities ribose galima nubraiþyti linijas
+# ar taðkus. Standartiðkai linijos ir taðkai braiþomi tik diagramos ribose.
+
+par(omd = c(0.1, 0.9, 0.1, 0.9), xpd = FALSE)
+curve(sin, -pi, pi, main = "Raudona linija diagramos ribose")
+abline(v = pi/2, col = "red")
+box("figure")
+
+par(omd = c(0.1, 0.9, 0.1, 0.9), xpd = TRUE)
+curve(sin, -pi, pi, main = "Raudona linija grafiko ribose")
+abline(v = pi/2, col = "red")
+box("figure")
+
+par(omd = c(0.1, 0.9, 0.1, 0.9), xpd = NA)
+curve(sin, -pi, pi, main = "Raudona linija viso grafinio lango ribose")
+abline(v = pi/2, col = "red")
+box("figure")
 
 
 # UÞDUOTIS ------------------------------ 
