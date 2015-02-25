@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2014-06-24 | 0215-02-14
+#   Sukurta: 2014-06-24 | 0215-02-14 | 2015-02-26
 #
 
 
@@ -17,11 +17,16 @@
 #      * parametras no.readonly
 #      
 #   2. Bendro pobûdþio grafiniai parametrai:
+#      * new
+#      * ask
 #      * ann
 #      * adj
 #      * bty
 #      * lty
 #      * lwd
+#      * lend
+#      * ljoin
+#      * lmitre
 #      * pch
 #
 #   3. Grafiko spalvos, mastelis ir antraðèiø ðriftas:
@@ -36,23 +41,45 @@
 #      * xaxt ir yaxt
 #      * xaxp ir yaxp
 #      * xaxs ir yaxs
-#      * mgp
+#      * xlog ir ylog
 #      * lab
+#      * mgp
 #      * tck ir tcl
 #      * las
 #
-#   5. Parametrai, kuriø reikðmës pakeisti negalima:
+#   5. Grafinio lango padalinimas, iðmatavimai ir paraðtës:
+#      * mfrow ir mfcol
+#      * mfg
+#      * mar ir mai
+#      * oma ir omi
+#      * fin ir pin
+#      * omd
+#      * fig ir plt
+#      * pty
+#      * usr
+#      * xpd
+#
+#   6. Teksto grafiniai parametrai:
+#      * ylbias
+#      * lheight
+#      * mex
+#      * srt ir crt
+#      * ps
+#
+#   7. Parametrai, kuriø reikðmës pakeisti negalima:
 #      * csi, cin, cra, cxy
 #      * din
 #      * page
+#      * err
+#      * mkh
+#      * smo
 #
 
 
 # PASTABOS ------------------------------
 
 #
-# Apraðyti parametrus, kuriø reikðmës keièiamos tik per funkcijà par.
-# Suraðyti uþduotis.
+# Suraðyti uþduotis: 7 VISI
 #
 
 
@@ -189,6 +216,47 @@ curve(sin, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "sin(x)")
 # BENDRO POBÛDÞIO GRAFINIAI PARAMETRAI    #
 # --------------------------------------- #
 
+# Grafiko braiþymui naudojant aukðto lygio grafinæ funkcijà, anksèiau atidarytas 
+# grafinis langas yra iðvalomas. Tai atlieka funkcija plot.new(), kuri suvykdoma
+# automatiðkai dar prieð aukðto lygio grafinæ funkcijà. Taip grafinis langas yra
+# paruoðiamas naujo grafiko braiþymui. Taèiau ðià taisyklæ galima anuliuoti. Tam
+# naudojami ðie grafiniai parametrai: 
+# 
+#        new -- loginis, nustato, ar naujas grafikas braiþomas ant senojo,
+#        ask -- loginis, nustato, ar prieð braiþant grafikà reikia patvirtinimo.
+
+# Pvz., naudojant funkcijà curve, nubraiþysime funkcijø y = sin(x) ir y = cos(x) 
+# grafikus. F-ja curve yra aukðto lygio grafinë funkcija, todël kiekvienà naujà
+# grafikà ji braiþo ið naujo.
+
+curve(sin, -pi, pi)
+curve(cos, -pi, pi)
+
+# Matome, kad kiekvienas naujas grafikas panaikina prieð tai nubraiþytà grafikà.
+# Parametrui new priskiriant reikðmæ TRUE, grafinis langas interpretuojamas kaip
+# naujas, todël, prieð suvykdant aukðto lygio grafinæ funkcijà, jis neiðvalomas.
+# Tokiu naujas grafikas braiþomas ant senojo virðaus.
+
+curve(sin, -pi, pi)
+par(new = TRUE)
+curve(cos, -pi, pi, ann = FALSE, axes = FALSE, col = "red")
+
+
+# Paprastai naujas grafikas nubraiþomas ið karto, kai tik ávykdoma grafinë f-ja.
+# Ðià taisyklæ nustato parametras ask, kurio standartinë reikðmë yra FALSE.
+
+par("ask")
+
+# Jeigu parametrui priskiriame reikðmæ TRUE, tai, ávykdþius aukðto lygio grafinæ
+# funkcijà, grafikas nubraiþomas ne ið karto, o laukiama patvirtinimo -- klaviðo
+# Enter paspaudimo arba pelës klaviðo paspaudimo ant grafiko.
+
+curve(sin, -pi, pi)
+par(ask = TRUE)
+plot(cars)
+hist(Nile)
+
+
 # Yra keletas grafiniø parametrø, kurie nustato bendro pobûdþio grafikø savybes:
 #
 #        ann -- loginis, leidþia arba uþdraudþia grafiko ir aðiø antraðtes,
@@ -197,6 +265,7 @@ curve(sin, -pi, pi, main = "Grafiko antraðtë", xlab = "x", ylab = "sin(x)")
 #        lty -- nustato linijos tipà,
 #        lwd -- nustato linijos storá,
 #        pch -- nustato taðko simbolá.
+
 
 # Pavyzdþiui, loginis parametras ann nustato, ar grafike vaizduojama antraðtë ir 
 # koordinaèiø aðiø pavadinimai. Pagal nutylëjimà ðio parametro reikðmë lygi TRUE,
@@ -299,6 +368,69 @@ abline(h = 0)
 
 hist(Nile)
 boxplot(Nile)
+
+graphics.off()
+
+
+# Yra keli grafiniai parametrai, kurie reguliuoja linijø sujungimà ir galø formà.
+# Plonoms linijoms jø poveikis yra praktiðkai nepastebimas, bet storoms - matosi. 
+# Parametrai tokie:
+#
+#       lend -- nustato linijos galø suapvalinimo bûdà,
+#      ljoin -- nustato linijø sujungimo bûdà,
+#     lmitre -- nustato linijø sujungimo smaigalio nukirtimà.
+
+# Parametrui lend galima priskirti reikðmæ 0 (standartinë), 1 arba 2. Pavyzdþiui,
+# nubraiþysime grafikà, kuriame vienas ant kito pavaizduoti 3 tos paèios linijos
+# galai. Raudona spalva nubraiþytas standartinis variantas.
+
+y <- c(10, 1, 10)
+
+par(lend = 2)
+plot(y, type = "l", lwd = 40, xlim = c(0.5, 3.5), ylim = c(0, 11))
+
+par(lend = 0)
+points(y, type = "l", lwd = 40, col = "red")
+
+par(lend = 1)
+points(y, type = "l", lwd = 40, col = "blue")
+
+graphics.off()
+
+
+# Parametras ljoint nustato, kaip linija atvaizduojama lûþio ar sujungimo taðke. 
+# Standartinë parametro reikðmë 0, kitos reikðmës - 1 arba 2. Pvz., nubraiþysime
+# tris tos paèios lauþtës variantus, ið kuriø matosi, kaip gali bûti sujungiamos
+# tiesës: sujungimas gali bûti suapvalintas, smailas arba nukirstas.
+
+y <- c(10, 1, 10)
+
+par(ljoin = 0)
+plot(y, lwd = 40, type = "l", ylim = c(0, 18))
+
+par(ljoin = 1)
+lines(y + 3, lwd = 40, type = "l")
+
+par(ljoin = 2)
+lines(y + 6, lwd = 40, type = "l")
+
+graphics.off()
+
+
+# Parametras lmitre nustato, kaip atvaizduoti linijø sujungimo taðke susidarantá
+# smaigalá -- trumpesná ar ilgesná. Parametrui galima priskirti skaièiø didesná 
+# uþ 1, standartinë jo reikðmë lygi 10. Pvz., nubraiþysime du tos paèios lauþtës
+# fragmento variantus, ið kur matyti, kad, didinant parametro reikðmæ, smaigalys
+# paliekamas ilgesnis.
+
+y <- c(0, 50, 0)
+x <- c(-1, 0, 1)
+
+par(ljoin = 1)
+plot(x - 4, y, lwd = 10, type = "l", ylim = c(0, 70), xlim = c(-20, 20))
+
+par(ljoin = 1, lmitre = 30)
+lines(x + 4, y, lwd = 10, type = "l")
 
 graphics.off()
 
@@ -466,10 +598,14 @@ plot(dist ~ speed, data = cars, pch = 20, font = 2)
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. Nubraiþykite sklaidos diagramà plot(dist ~ speed, data = cars). Nustatykite
+# 1. Grafinius parametrus pakeiskite taip, kad grafiko fonas bûtø juodas, taðkai
+#    ir linijos -- balti.
+# 2. Nubraiþykite sklaidos diagramà plot(dist ~ speed, data = cars). Nustatykite
 #    grafinius parametrus taip, kad taðkai bûtø raudoni, o aðys mëlynos spalvos.
 #    Sugalvokite kelis skirtingus bûdus.
-# 2. Tarkime, kad mastelio parametro cex reikðmë priskiriama taip: par(cex = 2).
+# 3. Sugalvokite, kaip nubraiþyti apskritimà, jei grafike galima pavaizduoti tik
+#    vienà taðkà.
+# 4. Tarkime, kad mastelio parametro cex reikðmë priskiriama taip: par(cex = 2).
 #    Sugalvokite bûdà, kaip nubraiþyti diagramà, kad antraðtës joje bûtø áprasto
 #    dydþio, lyg parametro cex reikðmë bûtø lygi 1.
 
@@ -485,8 +621,10 @@ plot(dist ~ speed, data = cars, pch = 20, font = 2)
 #       yaxt
 #       xaxp -- nustato Ox aðies ribas ir padalinimø skaièiø,
 #       yaxp
-#       xaxs -- nustato Ox aðies ilgio apskaièiavimo bûdà.
+#       xaxs -- nustato Ox aðies ilgio apskaièiavimo bûdà,
 #       yaxs
+#       xlog -- loginis, nurodo ar Ox aðis bus logaritminëje skalëje.
+#       ylog
 
 # Braiþant grafikà, funkcija plot, hist ar kitos aukðto lygio grafinës funkcijos 
 # automatiðkai nubraiþo ir koordinaèiø aðis. Parametrui xaxt arba yaxt nurodþius 
@@ -566,6 +704,23 @@ abline(v = -pi, col = "red")
 par(xaxs = "r", yaxs = "r")
 curve(sin, -pi, pi)
 abline(v = -pi, col = "red")
+
+
+# Parametro xlog reikðmë TRUE nurodo, kad Ox aðis yra logaritminëje skalëje. Kai
+# nubraiþomas naujas grafikas, parametrui automatiðkai priskiriama reikðmæ FALSE.
+# Ji pasikeièia, kai aukðto lygio grafinë funkcija sudaro grafikà su logaritmine
+# aðimi. Lygiai tas pats galioja ir parametrui ylog.
+
+# Pavyzdþiui, nubraiþysime dvi stulpelines diagramas, vienà su áprasta Oy aðimi,
+# kità - su logaritmine. Galima pastebëti, kad pirmuoju atveju parametro reikðmë
+# yra FALSE, o tuos paèius duomenis atvaizdavus logaritminëje skalëje, parametro 
+# reikðmë pasikeièia á TRUE.
+
+barplot(c(1, 10, 100))
+par("ylog")
+
+barplot(c(1, 10, 100), log = "y")
+par("ylog")
 
 
 # Yra dar keletas grafiniø parametrø, kurie kontroliuoja abiejø koordinaèiø aðiø 
@@ -675,8 +830,49 @@ curve(sin, -pi, pi, las = 1)
 
 
 # --------------------------------------- #
-# GRAFIKO IÐMATAVIMAI IR PARAÐTËS         #
+# GRAFIKO DALYS, IÐMATAVIMAI IR PARAÐTËS  #
 # --------------------------------------- #
+
+# Grafinio lango suskaidymui á kelias vienodas dalis ir grafikø iðdëstymo tvarkà
+# ðiose grafinio lango dalyse nustato ðie grafiniai parametrai:
+# 
+#      mfcol -- grafiná langà padalina á m x n dalis, uþpildo stulpeliais,
+#      mfrow -- grafiná langà padalina á m x n dalis, uþpildo eilutëmis, 
+#        mfg -- grafinio lango eilutë ir stulpelis, kuriame braiþomas grafikas.
+
+# Paprastai viename grafiniame lange braiþomas vienas grafikas. Kartais susidaro
+# situacija, kai grafiniame lange reikia nubraiþyti ið karto kelis grafikus. Tai
+# áprastas dalykas, kai reikia palyginti kelis analogiðkus grafikus. Ðiuo atveju 
+# grafinis langas iðskaidomas á kelias dalis. Tam naudojamas parametras mfrow ar
+# mfcol. Parametrams priskiriamas du elementus turintis vektorius c(m, n), kur m 
+# yra eiluèiø, o n stulpeliø skaièius. Taip sudaroma m x n dydþio matrica, kurià
+# uþpildome grafikais. Grafikø iðdëliojimo tvarka priklauso nuo parametro. Jeigu
+# naudojamas parametras mfcol, tai grafikai iðdëstomi stulpeliais, jei naudojame
+# parametrà mfrow -- tada eilutëmis.
+
+# Pavyzdþiui, naudojant parametrà mfrow, grafiná langà padalinsime á 2 x 2 dalis
+# ir nubraiþysime keturis skirtingus grafikus. Grafikai bus iðdëstomi eilutëmis.
+
+par(mfrow = c(2, 2))
+curve(sin, -pi, pi)
+plot(cars)
+hist(Nile)
+plot(Nile)
+
+
+# Naudojant parametrà mfg, galima pakeisti standartinæ grafikø iðdëstymo tvarkà.
+# Pvz., 3 x 3 grafiniame lange pirmas grafikas braiþomas pirmos eilutës pirmame
+# stulpelyje. Sekanèio grafiko vietà nurodome per parametrà mfg, ðiuo atveju tai
+# bus antros eilutës antrame stulpelyje, treèias ið eilës grafikas bus braiþomas 
+# treèios eilutës antrame stulpelyje.
+
+par(mfrow = c(2, 2))
+curve(sin, -pi, pi)
+par(mfg = c(2, 2))
+plot(cars)
+par(mfg = c(3, 2))
+hist(Nile)
+
 
 # Grafiniame lange yra kelios viena á kità ádëtos grafiko sritys. Pati maþiausia
 # sritis (plot) apribota aðimis arba rëmeliu ir joje braiþoma diagrama. Diagrama 
@@ -727,14 +923,50 @@ graphics.off()
 # pakeisti. Kokià dalá grafinio lango uþims ávairios grafiko sritys nustato keli
 # grafiniai parametrai:
 #
+#        fin -- nurodo viso grafiko dydá grafiniame lange,
+#        pin -- nurodo diagramos srities dydá,
 #        omd -- nurodo iðoriniø grafiko paraðèiø koordinates grafiniame lange,
 #        fig -- nurodo, kokià dalá grafiko sritis uþims iðoriniø paraðèiø viduje,
 #        plt -- nurodo, kokià dalá diagramos sritis uþims grafiko srityje,
-#        xpd -- nurodo kokiose ribose galima braiþyti taðkus ir linijas,
-#        usr -- koordinaèiø aðiø ribos,
 #        pty -- nurodo, ar grafikas bus kvadratinis, ar staèiakampis,
-#        fin -- nurodo viso grafiko dydá grafiniame lange,
-#        pin -- nurodo diagramos (aðiø ribose) dydá.
+#        usr -- koordinaèiø aðiø ribos,
+#        xpd -- nurodo kokiose ribose galima braiþyti taðkus ir linijas.
+
+
+# Standartiðkai grafinis langas yra 7 x 7 coliø dydþio. Tam tikrà ðio lango dalá 
+# uþima diagrama, kuri kartu su aðimis, antraðtëmis ir paraðtëmis sudaro grafikà.
+# Grafikas taip pat turi (iðorines) paraðtes, su kuriomis uþpildo grafiná langà.
+# Grafiko bei diagramos srities iðmatavimai nustatomi per parametrus fin ir pin.
+
+# Pvz., nustatysime, kad grafiko dalis grafiniame lange butø 5 x 5 coliø dydþio,
+# o nuo iðoriniø paraðèiø jà atskirsime raudonos spalvos rëmeliu.
+
+par(fin = c(5, 5))
+hist(Nile)
+box("figure", col = "red")
+
+graphics.off()
+
+# Analogiðkai, naudojant parametrà pin, nustatomi diagramos srities iðmatavimai.
+# Pvz., nustatysime 3 x 3 coliø dydþio diagramos sritá, kurià apribosime mëlynos
+# spalvos rëmeliu. Raudonas rëmelis, kaip ir anksèiau, þymi grafiko dalies ribas.
+
+par(pin = c(3, 3))
+hist(Nile)
+box("plot", col = "blue")
+box("figure", col = "red")
+
+graphics.off()
+
+# Kaip histograma ádëta á grafikà, o grafikas su iðorinëmis paraðtëmis á grafiná 
+# langà, galima pademonstruoti pakeitus ið karto abiejø parametrø reikðmes.
+
+par(fin = c(5, 5), pin = c(3, 3))
+hist(Nile)
+box("plot", col = "blue")
+box("figure", col = "red")
+
+graphics.off()
 
 
 # Parametras omd nustato, kokiose grafinio lango ribose bus formuojamas grafikas.
@@ -806,11 +1038,42 @@ curve(sin, -pi, pi, xlab = "Ox aðies antraðtës nesimato")
 graphics.off()
 
 
+# Parametro pty reikðmës "s" arba "m" nustato diagramos srities formà, kuri gali 
+# bûti kvadratinë ar staèiakampë. Pirmuoju atveju kvadrato kraðtinë lygi grafiko
+# srities kraðtiniø minimumui, todël diagrama neuþpildys visos grafiko srities.
+# Pavyzdþiui, nustatysime, kad grafiko sritis uþimtø pusæ grafinio lango ir joje
+# nubraiþysime histogramà. Galima pastebëti, kad, priklausomai nuo parametro pty 
+# reikðmës, histograma arba yra kvadratinë, arba uþima visà grafiko sritá.
+
+par(pty = "s", fig = c(0, 1, 0, 0.5))
+hist(Nile)
+
+par(pty = "m", fig = c(0, 1, 0, 0.5))
+hist(Nile)
+
+graphics.off()
+
+
+# Parametro usr reikðmë -- vektorius su 4 elementais: c(xmin, xmax, ymin, ymax).
+# Ðio vektoriaus elementai nurodo diagramos braiþymo ribas, kurios paprastai yra
+# ðiek tiek platesnës nei aðiø ribos.
+
+curve(sin, -pi, pi, frame.plot = FALSE)
+par("usr")
+
+# Jeigu parametrø xaxs ir yaxs reikðmë "i", tada diagramos ribos sutampa su aðiø
+# ribomis.
+
+par(xaxs = "i", yaxs = "i")
+curve(sin, -pi, pi, frame.plot = FALSE)
+par("usr")
+
+
 # Loginis parametras xpd nurodo, kurios srities ribose galima nubraiþyti linijas
 # ar taðkus. Standartiðkai linijos ir taðkai braiþomi tik diagramos ribose.
 
 par(omd = c(0.1, 0.9, 0.1, 0.9), xpd = FALSE)
-curve(sin, -pi, pi, main = "Raudona linija diagramos ribose")
+curve(sin, -pi, pi, main = "Raudona linija tik diagramos ribose")
 abline(v = pi/2, col = "red")
 box("figure")
 
@@ -824,15 +1087,131 @@ curve(sin, -pi, pi, main = "Raudona linija viso grafinio lango ribose")
 abline(v = pi/2, col = "red")
 box("figure")
 
+graphics.off()
+
+
+# NAUDINGA ------------------------------
+
+# Tradicinis bûdas nubraiþyti kelis grafikus viename lange -- naudoti parametrus
+# mfrow arba mfcol. Tà patá galima padaryti ir naudojant parametrà fig, nurodant
+# kaþkurià grafinio lango dalá ir nubraiþant joje grafikà. Tokiu bûdu grafiniame
+# lange galima iðskirti kelias dalis, kuriose braiþomas vis kitas grafikas.
+
+# Reikia þinoti, kad parametrui fig priskiriant naujà reikðmæ, sukuriamas naujas
+# grafikas. Norint, kad anksèiau nubraiþytas grafikas iðliktø, reikia nustatyti,
+# kad aukðto lygio grafinës funkcijos grafikà braiþytø ant virðaus. Ðiam tikslui
+# naudojamas grafinis parametras new.
+
+# Pvz., kairës pusës apatiniame ir deðinës pusës virðutiniame kampe nubraiþysime
+# po vienà grafikà.
+
+par(fig = c(0, 0.5, 0, 0.5))
+curve(sin, -pi, pi)
+box("figure")
+par(fig = c(0.5, 1, 0.5, 1), new = TRUE)
+hist(Nile)
+box("figure")
+
+
+# Analogiðkai galima iðnaudoti ir parametrà omd. Pavyzdþiui, naudojant parametrà
+# omd, ið pradþiø iðskirsime apatinæ grafinio lango dalá, o vëliau ir virðutinæ.
+# Abiejose dalyse nubraiþysime po funkcijos grafikà.
+
+par(omd = c(0, 1, 0, 0.5))
+curve(sin, -pi, pi)
+par(omd = c(0, 1, 0.5, 1), new = TRUE)
+curve(cos, -pi, pi)
+
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. 
-#    
-# 2. 
-#    
-# 3. 
-#    
+# 1. Naudojant parametrà mfcol, grafiniame lange nubraiþykite 3 duomenø rinkinio
+#    Nile grafikus: laiko eilutæ, daþniø histogramà ir boxplot diagramà.
+# 2. Nubraiþykite funkcijos y = sin(x) grafikà, kur bûtø tik funkcijos kreivë be
+#    koordinaèiø aðiø, aðiø padalø ir antraðèiø.
+# 3. Kiekvienas grafikas turi paraðtes, todël, viename grafiniame lange braiþant
+#    kelis grafikus, tarp jø susidaro pernelyg dideli tarpai. Pirmoje uþduotyje
+#    grafikus nubraiþykite taip, kad tarp jø nebûtø nereikalingø paraðèiø.
+# 4. Uþraðykite tokià komandà, kuri bet kokio tipo diagramos centre uþdëtø þalià 
+#    taðkà.
+
+
+# --------------------------------------- #
+# TEKSTO GRAFINIAI PARAMETRAI             #
+# --------------------------------------- #
+
+# Tekstas diagramoje arba jos paraðtëse taip pat yra grafiko dalis. Yra keletas
+# grafiniø parametrø, kurie nustato papildomo teksto raðymo taisykles:
+#
+#     ylbias -- teksto paraðtëse postûmio koeficientas,
+#    lheight -- diagramos eilutës aukðèio daugiklis,
+#        mex -- paraðtës eilutës aukðtis,
+#        srt -- teksto pasukimo kampas,
+#        crt -- simbolio pasukimo kampas,
+#         ps -- ðrifto dydis taðkais.
+
+
+# Parametras ylbias nustato teksto eiluèiø paraðtëse pozicijà aðiø atþvilgiu. Jo
+# reikðmë priklauso nuo árenginio, taèiau standartinë R reikðmë lygi 0.2. Keisti
+# ðio parametro reikðmæ prasmës nëra.
+
+
+# Parametras lheight yra ant diagramos raðomo teksto eilutës aukðèio daugiklis.
+# Pvz., parametrui priskirsime reikðmæ 2, kuri atitinka dvigubà eilutës aukðtá.
+
+par(lheight = 2)
+curve(sin, -pi, pi)
+text(pi/2, 0, "Èia tarpas tarp\n dviejø eiluèiø dvigubas.")
+
+
+# Parametras mex nustato eilutës aukðtá diagramos paraðtëse. Standartinë reikðmë
+# lygi 1. Skaièiai ties aðies padalomis raðomi pirmoje eilutëje, aðies antraðtës
+# raðomos treèioje eilutëje. Pakeitus parametro mex reikðmæ, keièiasi ir eiluèiø
+# aukðtis, todël pasikeièia ir paraðèiø plotis, nors eiluèiø skaièius jose lieka
+# nepakitæs (jei nesikeièia kitø parametrø reikðmës).
+
+# Pavyzdþiui, nubraiþysime grafikà su dvigubo aukðèio paraðtës eilutëmis. Teksto
+# ant diagramos eiluèiø aukðtis lieka nepakitæs.
+
+par(mex = 2)
+curve(sin, -pi, pi)
+mtext("Nulinë eilutë", side = 1, line = 0, at = 2)
+mtext("Pirma eilutë",  side = 1, line = 1, at = 2)
+mtext("Antra eilutë",  side = 1, line = 2, at = 2)
+mtext("Treèia eilutë", side = 1, line = 3, at = 2)
+
+text(pi/2, 0, "Èia tarpas tarp\n dviejø eiluèiø viengubas.")
+
+graphics.off()
+
+
+# Parametras srt nustato, kokiu kampu pasukama teksto eilutë. Parametras crt yra
+# skirtas tam paèiam tikslui, taèiau jis veikia ne su visais árenginiais.
+
+# Pvz., nubraiþysime funkcijos y = sin(x) grafikà ir ant jo uþdësime 70 laipsniø 
+# kampu pasuktà tekstà.
+
+par(srt = 70)
+curve(sin, -pi, pi)
+text(0, 0.3, "Pasukta eilutë.")
+
+
+# Parametras ps nustato ðrifto dydá pikseliais. Standartinë jo reikðmë priklauso
+# nuo árenginio, taèiau paprastai laikoma, kad pikselis lygus 1/72 colio. 
+
+par("ps")
+
+# Pavyzdþiui, pakeisime parametro reikðmæ ir sumaþinsime ðrifto dydá.
+
+par(ps = 9)
+curve(sin, -pi, pi)
+text(pi/2, 0, "Tekstas ant grafiko.")
+
+
+# UÞDUOTIS ------------------------------ 
+
+# 1. Nubraiþykite paprastà stulpelinæ diagramà barplot(1:3). Kiekvieno stulpelio
+#    viduje ðalia deðiniojo kraðto vertikaliu tekstu uþraðykite stulpelio numerá.
 
 
 # --------------------------------------- #
@@ -891,11 +1270,12 @@ graphics.off()
 par("page")
 
 
-# UÞDUOTIS ------------------------------ 
+# Yra keli grafiniai parametrai, kuriø reikðmæ galima pakeisti, taèiau jie patys
+# nieko nekeièia. Taip yra todël, kad funkcija ar grafiko savybë, kurià jie turi
+# reguliuoti, R kalboje nerealizuota. Tai yra:
+#
+#        err -- nurodo, ar áspëti apie taðkus uþ diagramos ribø ir kitas klaidas,
+#        mkh -- nustato specialaus taðko simbolio dydá,
+#        smo -- reguliuoja braiþomø kreiviø glodumà.
 
-# 1. 
-#    
-# 2. 
-#    
-# 3. 
-#    
+par(c("err", "mkh", "smo"))
