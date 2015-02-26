@@ -29,6 +29,7 @@
 
 #
 # Paraðyti apie funkcijà count.fields.
+# Paraðyti apie funkcijà read.fwf.
 # 
 
 
