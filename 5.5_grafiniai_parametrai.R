@@ -79,7 +79,7 @@
 # PASTABOS ------------------------------
 
 #
-# Suraðyti uþduotis: 7 VISI
+# Pastabø nëra.
 #
 
 
