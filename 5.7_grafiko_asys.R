@@ -28,7 +28,7 @@
 # PASTABOS ------------------------------
 
 #
-# Pastabø nëra.
+# Papildyti apie box() parametrus.
 # 
 
 
