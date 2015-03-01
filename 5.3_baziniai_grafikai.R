@@ -23,7 +23,9 @@
 # PASTABOS ------------------------------
 
 #
+# Paraðyti apie curve parametrà xname.
 # Sugalvoti uþdaviniø funkcijai boxplot.
+# Paraðyti apie barplot parametrà axis.lty.
 # 
 
 
