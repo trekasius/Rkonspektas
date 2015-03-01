@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2014-04-25 | 2014-06-08
+#   Sukurta: 2014-04-25 | 2014-06-08 | 2015-02-28
 #
 
 
@@ -16,6 +16,11 @@
 #      * funkcija points
 #      * funkcija lines
 #      * funkcija abline
+#
+#   2. Kintamøjø ið matricos stulpeliø braiþymas:
+#      * funkcija matplot
+#      * funkcija matpoints
+#      * funkcija matlines
 #
 
 
@@ -70,11 +75,11 @@ rm(list = ls())
 # Taðkai su koordinatëmis (x, y) ant jau nubraiþyto grafiko uþdedami naudojant 
 # funkcijà points. Pagrindiniai jos parametrai:
 #
-#        x -- x reikðmiø vektorius,
-#        y -- y reikðmiø vektorius,
-#      pch -- taðko simbolis,
-#      cex -- taðko simbolio dydis,
-#      col -- taðko spalva.
+#          x -- x reikðmiø vektorius,
+#          y -- y reikðmiø vektorius,
+#        pch -- taðko simbolis,
+#        cex -- taðko simbolio dydis,
+#        col -- taðko spalva.
 #
 # Ið dalies galima sakyti, kad f-ja points(x, y) yra f-ja plot(x, y, type = "p"),
 # taèiau ji daþniausiai naudojama tuo atveju, kai ant kitos funkcijos nubraiþyto 
@@ -242,11 +247,11 @@ for (i in p) add.line(i)
 # esmës skiriasi tik tuo, kad funkcija lines naudojama taðkø ir linijø uþdëjimui 
 # ant jau nubraiþyto grafiko. Pagrindiniai ðios funkcijos parametrai:
 # 
-#        x -- x reikðmiø vektorius,
-#        y -- y reikðmiø vektorius,
-#      lty -- linijos tipas,
-#      lwd -- linijos storis,
-#      col -- linijos spalva.
+#          x -- x reikðmiø vektorius,
+#          y -- y reikðmiø vektorius,
+#        lty -- linijos tipas,
+#        lwd -- linijos storis,
+#        col -- linijos spalva.
 
 # Pavyzdþiui, ant anksèiau sudarytos temperatûros histogramos uþdësime poligonà. 
 # Tai tokia kreivë, kuri sudaryta ið atkarpomis sujungtø taðkø (x, y). Èia x yra
@@ -294,12 +299,12 @@ lines(x = 5:9, y = temp.vid, type = "b", pch = 19, col = "red")
 # taðkà, kuriame ði tiesë kerta Ox arba Oy aðá. Tokiø tiesiø braiþymui naudojama
 # funkcija abline. Pagrindiniai jos parametrai:
 #
-#        a -- tiesës y = a + bx parametras a,
-#        b -- tiesës y = a + bx parametras b,
-#        h -- taðkas, kuriame aðá Oy kerta horizontali tiesë,
-#        v -- taðkas, kuriame aðá Ox kerta vertikali tiesë,
-#      col -- tiesës spalvos pavadinimas arba numeris,
-#     type -- tiesës tipas, 1 iðtisinë, 2 punktyrinë ir t.t.
+#          a -- tiesës y = a + bx parametras a,
+#          b -- tiesës y = a + bx parametras b,
+#          h -- taðkas, kuriame aðá Oy kerta horizontali tiesë,
+#          v -- taðkas, kuriame aðá Ox kerta vertikali tiesë,
+#        col -- tiesës spalvos pavadinimas arba numeris,
+#       type -- tiesës tipas, 1 iðtisinë, 2 punktyrinë ir t.t.
 
 
 # Pavyzdþiui, nubraiþysime temperatûros kitimo laike grafikà ir uþdësime ant jo
@@ -383,3 +388,66 @@ abline(lm(y ~ x))
 # 2. Nubraiþykite temperatûros ið duomenø lentelës airquality kitimo laike taðkø
 #    sklaidos diagramà. Tada vertikaliomis tiesëmis atskirkite kiekvieno mënesio 
 #    stebinius.
+
+
+# --------------------------------------- #
+# MATRICOS STULPELIØ BRAIÞYMAS            #
+# --------------------------------------- #
+
+# Gana daþnai pasitaiko situacija, kada reikia nubraiþyti ið karto daug kreiviø,
+# kuriø koordinatës suraðytos matricos stulpeliuose. Ðiuo atveju áprasta naudoti
+# specialias funkcijas:
+#
+#    matplot -- nubraiþo kreives arba taðkø sklaidos diagramà,
+#  matpoints -- uþdeda ant grafiko taðkus,
+#   matlines -- uþdeda ant grafiko linijas.
+
+
+# Ðios f-jos yra standartiniø funkcijø plot, points ir lines matricinës versijos.
+# Pagrindiniai parametrai yra ðie:
+#
+#          x -- vektorius arba matrica su x koordinatëmis,
+#          y -- vektorius arba matrica su y koordinatëmis.
+
+# Matricø x ir y eiluèiø skaièius turi bûti vienodas. Tada taðkus (x, y) gauname
+# ið matricø x ir y imdami stulpelius su vienodais numeriais. Stulpeliø skaièius
+# gali bûti nevienodas. Pavyzdþiui, jei kelios y reikðmës gautos prie tos paèios
+# x reikðmës, tai uþtenka, kad matrica x turëtø tik vienà stulpelá.
+
+# Pavyzdþiui, nubraiþysime 1000 atsitiktinio klaidþiojimo su dreifu trajektorijø.
+# Vienà trajektorijà sudaro 100 taðkø, kuriø x koordinatë sutampa, todël matrica
+# X turi tik vienà stulpelá.
+
+X <- matrix(1:100)
+X
+
+Y <- replicate(1000, cumsum(rnorm(100)))
+Y
+
+# Jei nenurodyta kitaip, f-ja matplot kiekvienos kreivës taðkus þymi skirtingais 
+# simboliais. Be to, kiekviena kreivë turi savo spalvà. Tai kontroliuoja áprasti
+# grafiniai parametrai: type, lty, lwd, col ir t.t. Èia nustatysime, kad kreivës
+# bûtø permatomos iðtisinës linijos.
+
+matplot(X, Y, type = "l", lty = 1, col = rgb(0, 0, 0, 0.1))
+
+# Tokiu atveju, kai x koordinatë nurodo tik taðko eilës numerá, uþtenka nurodyti 
+# tik Y koordinaèiø matricà.
+
+matplot(Y, type = "l", lty = 1, col = rgb(0, 0, 0, 0.1))
+
+
+# Naudojant funkcijà matlines, ant jau nubraiþyto grafiko uþdësime dvi kraðtines
+# trajektorijas: þemiausià ir aukðèiausià. Jø koordinates atrinksime ið pradiniø 
+# duomenø matricos Y ir sudarysime matricà su dviem stulpeliais Z.
+
+Z <- t(apply(Y, 1, range))
+Z
+
+matlines(X, Z, lty = 1, col = "red")
+
+
+# UÞDUOTIS ------------------------------ 
+
+# 1. Ant 1000 kreiviø grafiko uþdëkite suvidurkintos trajektorijos taðkus. Taðko
+#    simbolá pakeiskite, nustatykite taðko spalvà ir dydá.
