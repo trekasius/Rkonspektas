@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2015-03-07 | 2015-03-23
+#   Sukurta: 2015-03-07 | 2015-03-30
 #
 
 
@@ -25,6 +25,7 @@
 #
 #   3. Grafiko iðsaugojimas á vektorinës grafikos failà:
 #      * pdf
+#      * pdfFonts
 #      * postscript
 #
 #   4. Grafiko iðsaugojimas á rastrinës grafikos failà:
@@ -244,6 +245,7 @@ plot(sin, -pi, pi)
 #      title -- grafinio lango pavadinimas.
 
 x11(8, 6, pointsize = 11, bg = "skyblue", title = "x11 langas")
+plot(sin, -pi, pi)
 
 
 # MS Windows operacinëje sistemoje uþ grafiniø objektø atvaizdavimà skirtinguose 
@@ -314,8 +316,186 @@ plot(sin, -pi, pi, main = "700 x 700 taðkø dydþio grafikas")
 # VEKTORINË GRAFIKA                       #
 # --------------------------------------- #
 
-#        pdf -- 
-# postscript -- 
+# Ðiuo metu labiausiai paplitæ du nuo operacinës sistemos ir programinës árangos
+# nepriklausantys elektroniniø dokumentø formatai:
+#
+#         ps -- PostScript,
+#        pdf -- Portable Document Format.
+#
+# PostScript ir PDF tipo dokumentai plaèiai naudojami elektroninëje leidyboje ir
+# spaudoje, kur reikalinga aukðta poligrafinë teksto ir grafikos kokybë.
+
+# PostScript yra aukðto lygio programavimo kalba, kuri skirta teksto ir grafikos
+# tuðèiame puslapyje apraðymui. Galima sakyti, kad PostScript dokumentas tai yra 
+# tokia programa, kuri spausdintuvui nurodo, kaip atvaizduoti dokumente apraðytà
+# puslapá. Paprastai dokumentà su PostScript programa generuoja kitos programos. 
+# Norint paþiûrëti, kaip atrodys PostScript dokumentas, reikia turëti PostScript
+# kalbos interpretatoriø. Pvz., tam galima naudoti programà Ghostscript.
+
+# PDF yra PostScript kalbos pagrindu sukurtas elektroninio dokumento formatas. Á
+# toká failà galima átraukti tekstà kartu su jam reikalingais ðriftais, rastrinæ
+# ir vektorinæ grafikà. Dokumentà PDF formatu gali iðsaugoti grafiniai ar teksto
+# redaktoriai. PDF dokumentui perþiûrëti reikia specialios programos, pavyzdþiui, 
+# SumatraPDF.
+
+
+# Grafikø iðsaugojimui PostScript ar PDF formatu naudojamos f-jos postscript bei 
+# pdf. Èia plaèiau aptarsime tik funkcijà pdf, kurios pagrindiniai parametrai ir
+# jø standartinës reikðmës yra tokie patys kaip ir funkcijos windows, taèiau kai 
+# kurie ið jø yra specifiniai PDF dokumentams:
+#
+#       file -- pdf failo pavadinimas,
+#      width -- grafinio lango plotis coliais,
+#     height -- grafinio lango aukðtis coliais,
+#  pointsize -- taðko dydis,
+#         bg -- grafiko fono spalva,
+#         fg -- grafiko taðkø ir linijø spalva,
+#      title -- á pdf failà áraðomas grafiko pavadinimas,
+#     family -- grafike naudojamo ðrifto ðeima,
+#   encoding -- ðrifto koduotë,
+# colormodel -- spalvø modelis,
+#    onefile -- nurodo, ar faile galima braiþyti kelis grafikus,
+#      paper -- popieriaus lapo dydis,
+# pagecentre -- nurodo, ar grafikà atvaizduoti puslapio centre.
+
+
+# Paprasèiausiu atveju uþtenka nurodyti pdf dokumento, á kurá bus atvaizduojamas 
+# grafikas, vardà. Jeigu prieð tai, naudojant funkcijà setwd, nurodomas darbinis 
+# katalogas, failo vardas gali bûti trumpas, prieðingu atveju -- reikia nurodyti 
+# pilnà kelià iki failo. Nubraiþius grafikà, raðymas á pdf failà nutraukiamas, o
+# grafinis árenginys uþdaromas. Tam naudojama speciali funkcija dev.off().
+
+# Pavyzdþiui, nubraiþysime paprastà funkcijos y = sin(x) grafikà ir áraðysime já 
+# á failà "grafikas.pdf", kuris bus sukurtas darbiniame kataloge. Pasitikslinti,
+# kuris katalogas yra darbinis, galima naudojant funkcijà getwd().
+
+pdf(file = "grafikas.pdf")
+  plot(sin, -pi, pi, main = "Funkcijos y = sin(x) grafikas")
+dev.off()
+
+
+# Labai daþnai grafikui nubraiþyti reikia keletos grafiniø funkcijø ir papildomø
+# skaièiavimø. Tokiu atveju visos grafinës f-jos raðomos tarp pdf() ir dev.off().
+
+pdf(file = "grafikas.pdf")
+
+  # nubraiþome funkcijos grafikà be Ox aðies ir rëmelio
+  plot(sin, -pi, pi, las = 1, xaxt = "n", frame = FALSE)
+
+  # apskaièiuojame Ox aðies padalas ir sudarome jø pavadinimus
+  Ox <- seq(-pi, pi, by = pi/2)
+  Lx <- expression(-pi, -pi/2, 0, pi/2, pi)
+
+  # ant grafiko uþdedame Ox aðá
+  axis(1, at = Ox, labels = Lx)
+
+  # uþdedame prie Ox aðies padalø priderintà tinklelá
+  abline(v = Ox, h = -2:2/2, lty = "dotted", col = "gray80")
+
+  # uþraðome pagrindinæ grafiko antraðtæ
+  title(main = "Funkcijos y = sin(x) grafikas")
+
+dev.off()
+
+
+# Grafiko dydá nustato parametrai width ir height. Jeigu nenurodyta kitaip, tada
+# standartinio grafiko dydis yra 7 x 7 colio. Parametras pointsize nustato taðko 
+# dydá, nuo kurio priklauso teksto ðrifto dydis. Pvz., nubraiþysime 6 x 4 dydþio
+# grafikà su 8 dydþio ðriftu.
+
+pdf(file = "grafikas.pdf", width = 6, height = 4, pointsize = 8)
+  plot(Nile)
+dev.off()
+
+
+# Puslapio, kuriame atvaizduojamas grafikas, dydis priklauso nuo parametro paper. 
+# Standartinë jo reikðmë "special" nurodo, kad puslapio dydis sutampa su grafiko
+# dydþiu, taèiau puslapis gali turëti savo formatà. Kitos parametro reikðmës yra 
+# tokios:
+# 
+#       "a4" -- 8.27 x 11.7 in (210.0 x 297.0 mm),
+#   "letter" -- 8.50 x 11.0 in (215.9 x 279.4 mm),
+#    "legal" -- 8.50 x 14.0 in (215.9 x 355.6 mm),
+#
+#      "a4r" -- pasuktas A4 formatas,
+#      "USr" -- pasuktas Legal formatas.
+
+# Standartiðkai grafikas vaizduojamas puslapio centre. Tai priklauso nuo loginio 
+# parametro pagecentre. Jam priskyrus reikðmæ FALSE, grafikas bus atvaizduojamas
+# viename puslapio kampe.
+
+# Pavyzdþiui, ant pasukto A4 formato puslapio nubraiþysime ið karto du grafikus.
+# Kadangi standartinë parametro pagecenter reikðmë lygi TRUE, grafikas braiþomas 
+# puslapio centre.
+
+pdf(file = "grafikas.pdf", width = 11, height = 6, paper = "a4r")
+  par(mfrow = c(1, 2))
+  plot(Nile, frame = FALSE)
+  hist(Nile, main = "")
+dev.off()
+
+
+# PDF dokumente naudojamo ðrifto ðeimà nustato parametras family. Problema tame,
+# kad standartinës reikðmës "serif", "sans" arba "mono" PDF dokumentuose reiðkia
+# tam tikrà konkretø ðriftà, pavyzdþiui:
+#
+#    "serif" -- "Times"
+#     "sans" -- "Helvetica"
+#     "mono" -- "Courier"
+
+# Ryðá tarp standartinëje R grafikoje naudojamos ðriftø ðeimos ir konkretaus PDF 
+# dokumento ðrifto nusako funkcija pdfFonts.
+
+pdfFonts("serif")
+pdfFonts("sans")
+pdfFonts("mono")
+
+# Be to, PDF dokumente galima naudoti ir kitus ðriftus. Pavyzdþiui, gausime visà 
+# jø sàraðà.
+
+names(pdfFonts())
+
+
+# Tai, kokiu þenklu bus atvaizduota raidë (tiksliau - raidæ atitinkantis kodas), 
+# priklauso nuo koduotës. Lotyniðkos abëcëlës pagrindu sudaryta ASCII koduotë ið
+# viso koduoja 256 simbolius. Kodai nuo 0 iki 127 koduoja skaitmenis, didþiàsias 
+# ir maþàsias lotyniðkos abëcëlës raides, skyrybos þenklus ir specialius valdymo 
+# simbolius. Likæ 128 kodai naudojami papildomiems simboliams, tarp jø gali bûti 
+# ir nacionaliniø abëcëliø simboliai. Priklausomai nuo to, kokiais simboliais ði
+# lentelë papildoma, gaunama viena ar kita koduotë.
+
+# Vakarø Europos kalboms, kurios naudoja lotyniðkà abëcëlæ, naudojama ISO 8859-1 
+# koduotë, kuri dar vadinama Latin-1. MS Windows operacinëje sistemoje jà beveik 
+# visiðkai atitinka Windows-1252 (CP-1252) koduotë. Savo koduotes turi Centrinës
+# ir Rytø Europos kalbos, baltø kalbos, taip pat graikø kalba bei kalbos, kurios 
+# savo raðtui naudoja kirilicà.
+
+# PDF dokumento koduotë priklauso nuo parametro encoding reikðmës. Paprastai yra
+# naudojamos tokios koduotës:
+#
+#  "WinAnsi" -- Western European,
+#   "CP1250" -- Central European,
+#   "CP1251" -- Cyrillic,
+#   "CP1253" -- Greek,
+#   "CP1257" -- Baltic.
+
+# Standartinë parametro reikðmë "default" gali reikðti bet kurià ið ðiø koduoèiø.
+# Tai priklauso nuo to, kokia koduotë naudojama R aplinkoje, bet daþniausiai tai
+# yra "WinAnsi" (kuri ið tikro turi bûti vadinama Windows-1252).
+
+# Pavyzdþiui, tà patá grafikà atvaizduosime á PDF failà naudodami dvi skirtingas 
+# koduotes. Galima pastebëti, kad á Windows-1252 koduotæ ið 9 lietuviðkø raidþiø
+# patenka tik ð ir þ, o likusios atvaizduojamos nekorektiðkai.
+
+pdf(file = "grafikas.pdf", encoding = "WinAnsi")
+  plot(0, 0, type = "n", frame = FALSE, main = "WinAnsi, Western European")
+  text(0, 0, "Lietuviðkos raidës\n àæëáøûèðþ\n arba matosi, arba ne.", cex = 3)
+dev.off()
+
+pdf(file = "grafikas.pdf", encoding = "CP1257")
+  plot(0, 0, type = "n", frame = FALSE, main = "CP-1257, Baltic")
+  text(0, 0, "Lietuviðkos raidës\n àæëáøûèðþ\n arba matosi, arba ne.", cex = 3)
+dev.off()
 
 
 # UÞDUOTIS ------------------------------ 
