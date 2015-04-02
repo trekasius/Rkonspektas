@@ -26,6 +26,7 @@
 #   3. Grafiko iðsaugojimas á vektorinës grafikos failà:
 #      * pdf
 #      * pdfFonts
+#      * pdf.options
 #      * postscript
 #
 #   4. Grafiko iðsaugojimas á rastrinës grafikos failà:
@@ -353,7 +354,6 @@ plot(sin, -pi, pi, main = "700 x 700 taðkø dydþio grafikas")
 #      title -- á pdf failà áraðomas grafiko pavadinimas,
 #     family -- grafike naudojamo ðrifto ðeima,
 #   encoding -- ðrifto koduotë,
-# colormodel -- spalvø modelis,
 #    onefile -- nurodo, ar faile galima braiþyti kelis grafikus,
 #      paper -- popieriaus lapo dydis,
 # pagecentre -- nurodo, ar grafikà atvaizduoti puslapio centre.
@@ -496,6 +496,36 @@ pdf(file = "grafikas.pdf", encoding = "CP1257")
   plot(0, 0, type = "n", frame = FALSE, main = "CP-1257, Baltic")
   text(0, 0, "Lietuviðkos raidës\n àæëáøûèðþ\n arba matosi, arba ne.", cex = 3)
 dev.off()
+
+
+# NAUDINGA ------------------------------
+
+# Perþiûrëti PDF dokumento parametrø reikðmes galima naudojant f-jà pdf.options.
+
+pdf.options()
+
+# Ðià funkcijà galima panaudoti tuo atveju, kai reikia nubraiþyti ið karto kelis 
+# grafikus su vienodomis PDF parametrø reikðmëmis. Nustaèius visiems dokumentams
+# bendrø parametrø reikðmes, funkcijai pdf uþtenka nurodyti tik failo vardà.
+
+pdf.options(width = 6, height = 4, pointsize = 8, encoding = "CP1257")
+
+pdf(file = "grafikas-1.pdf")
+  plot(Nile)
+dev.off()
+
+pdf(file = "grafikas-2.pdf")
+  hist(Nile)
+dev.off()
+
+pdf(file = "grafikas-3.pdf")
+  boxplot(Nile)
+dev.off()
+
+
+# Naudojant ðià funkcijà, galima atstatyti standartines visø parametrø reikðmes.
+
+pdf.options(reset = TRUE)
 
 
 # UÞDUOTIS ------------------------------ 
