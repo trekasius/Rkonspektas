@@ -1,11 +1,11 @@
 
 #
 #   Dalykas: STATISTINËS DUOMENØ ANALIZËS SISTEMA IR PROGRAMAVIMO KALBA R
-#            Grafiniai árenginiai ir jø valdymas.
+#            Grafiniai árenginiai. Vektorinë ir rastrinë grafika.
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2015-03-07 | 2015-03-30
+#   Sukurta: 2015-03-07 | 2015-04-09
 #
 
 
@@ -34,20 +34,6 @@
 #      * bmp
 #      * jpeg
 #      * tiff
-#
-#   5. Grafiniø árenginiø valdymas:
-#      * dev.new
-#      * dev.list
-#      * dev.cur 
-#      * dev.set
-#      * dev.size
-#      * dev.off 
-#      * graphics.off
-#
-#   6. Grafikø ekrane iðsaugojimas ir atkartojimas:
-#      * savePlot
-#      * recordPlot
-#      * replayPlot
 #
 
 
@@ -540,40 +526,175 @@ pdf.options(reset = TRUE)
 # RASTRINË GRAFIKA                        #
 # --------------------------------------- #
 
-#        png -- 
-#        gif -- 
+# Rastrinës grafikos paveiksle vaizdas sudarytas ið daug taðkø, kuriø kiekvienas 
+# yra tam tikros spalvos ir uþima tam tikrà vietà. Svarbiausios charakteristikos
+# tai paveikslo dydis taðkais ir spalvø skaièius. Dydis daþniausiai iðreiðkiamas
+# pikseliø skaièiumi á plotá ir aukðtá, spalvø skaièius nusakomas bitø skaièiumi.
+# Pvz., jei spalvoms koduoti skiriami 8 bitai, tada tokiame paveiksle naudojamos
+# 256 spalvos. 
+
+# Kadangi kiekvienas taðkas gali bûti skirtingos spalvos, rastrinë grafika labai
+# gerai tinka fotografijai bei kitiems sudëtingiems vaizdams fiksuoti ir saugoti, 
+# taèiau rastriniu formatu saugomas vaizdas uþima daugiau vietos negu vektoriniu.
+# Be to, keièiant mastelá arba atliekant kitas geometrines transformacijas, pvz., 
+# pasukant, prarandama vaizdo kokybë.
+
+# Daugeliui árenginiø rastrinë grafika yra natûralus bûdas atvaizduoti tam tikrà
+# vaizdà: tai skaitmeninë fotokamera, kompiuterio ekranas, spausdintuvas ir t.t. 
+# Labiausiai paplitæ ðie rastrinës grafikos failø formatai:
+#
+#        png -- Portable Network Graphics,
+#        bmp -- Bitmap Image File,
+#       jpeg -- Joint Photographic Experts Group,
+#       tiff -- Tagged Image File Format.
+
+# Kiekvienas failo formatas turi savo pritaikymo sritá. Pavyzdþiui, BMP formatas 
+# naudojamas nesuspaustiems rastriniams vaizdams saugoti ir yra natûtali Windows
+# OS grafinës sistemos dalis. JPEG tai rastriniø vaizdø saugojimo bei suspaudimo 
+# metodas. Jis daþniausiai naudojamas skaitmetinëje fotografijoje ir þemëlapiams
+# atvaizduoti. Vaizdo suspaudimo laipsná galima nustatyti, taèiau èia prarandama
+# informacija, todël nukenèia paveikslo kokybë. Dël tos prieþasties JPEG netinka 
+# brëþiniams bei diagramoms vaizduoti. PNG formate vaizdo suspaudimas atliekamas 
+# be informacijos praradimo. PGN formatas naudojat tik RGB spalvø sistemà, todël
+# netinka spaudai, bet grafikams, diagramoms ir brëþiniams tinka geriau nei JPEG.
+# Spaudoje plaèiai naudojamas TIFF formatas, kuriame suspaudimas gali bûti ir be 
+# informacijos praradimo, ir su praradimu, o spalvoms naudojamos ir RGB, ir CMYK
+# sistemos.
+
+# Grafikams iðsaugoti rastriniu formatu R turi funkcijas bmp, jpeg, png ir tiff. 
+# Beveik visi ðiø funkcijø parametrai yra tie patys, svarbiausi ið jø yra tokie:
+#
+#       file -- failo pavadinimas,
+#      width -- grafiko plotis,
+#     height -- grafiko aukðtis,
+#      units -- grafiko iðmatavimo vienetai, px, in,
+#        res -- taðkø tankis, 
+#  pointsize -- taðko dydis,
+#         bg -- grafiko fono spalva,
+#     family -- grafike naudojamo ðrifto ðeima,
+#       type -- grafikos tipas, standartinis Windows GDI arba Cairo,
+#  antialias -- glodinimo metodas.
+
+# Jei grafikas iðsaugomas JPEG formatu, vaizdo suspaudimo laipnis yra nustatomas 
+# naudojant parametrà quality, jei TIFF formatu, naudojant parametrà compression
+# nustatomas vaizdo suspaudimo algoritmas, kuriø yra keletas.
 
 
-# UÞDUOTIS ------------------------------ 
+# Jeigu grafikas bus perþiûrimas kompiuterio ekrane arba naudojamas publikavimui
+# internete, tai jam iðsaugoti geriausiai tinka PNG formatas. Pvz., nubraiþysime 
+# paprastà 800 x 600 px dydþio grafikà ir iðsaugosime já PNG formatu.
 
-# 1. 
-#    
-# 2. 
-#    
-
-
-# --------------------------------------- #
-# GRAFINIØ ÁRENGINIØ VALDYMAS             #
-# --------------------------------------- #
-
-# Vienu metu galima naudoti keletà grafiniø árenginiø. Aukðto lygio grafinë f-ja
-# grafikà atvaizduoja aktyviame árenginyje. Jei tuo metu aktyvaus árenginio nëra,
-# tada grafiko braiþymui atidaromas standartinis árenginys. Kuris ið visø galimø
-# árenginiø yra standartinis, priklauso nuo operacinës sistemos. 
+png(file = "grafikas-800x600.png", 800, 600)
+  plot(sin, -3*pi, 3*pi)
+dev.off()
 
 
-# UÞDUOTIS ------------------------------ 
+# JPEG formatu saugomo vaizdo kokybë labai priklauso nuo jo suspaudimo laipsnio.
+# Pavyzdþiui, nubraiþysime tam tikros vietovës þemëlapá su aukðèio izolinijomis, 
+# kurá pradþioje iðsaugosime JPEG formatu su dideliu suspaudimo laipsniu, o tada
+# dar kartà iðsaugosime iðlaikant beveik maksimalià vaizdo kokybæ. Jai nustatyti
+# naudojamas funkcijos jpeg parametras quality. Galima pastebëti, kad 
 
-# 1. 
-#    
-# 2. 
-#    
+jpeg(file = "zemelapis-jpg-15proc.jpg", 800, 600, quality = 15)
+  filled.contour(volcano, color = terrain.colors, nlevels = 20, 
+  	                  plot.axes = contour(volcano, n = 20, add = TRUE))
+dev.off()
+
+jpeg(file = "zemelapis-jpg-95proc.jpg", 800, 600, quality = 95)
+  filled.contour(volcano, color = terrain.colors, nlevels = 20, 
+  	                  plot.axes = contour(volcano, n = 20, add = TRUE))
+dev.off()
+
+# Nesunkiai galima pastebëti spalvos netolygumus, neryðkias linijas ir kitus dël 
+# didelio vaizdo suspaudimo atsiradusius artefaktus. Didelës kokybës faile tokie
+# artefaktai vizualiai nematomi, taèiau toks failas uþima þymiai daugiau vietos.
+# Palyginimui tà patá grafikà iðssaugosime PNG formatu. Galima pastebëti, kad to
+# paties dydþio ir vizualiai tos paèios vaizdo kokybës JPEG failas uþima daugiau 
+# vietos diske negu PNG formato failas.
+
+png(file = "zemelapis-png.png", 800, 600)
+  filled.contour(volcano, color = terrain.colors, nlevels = 20, 
+  	                  plot.axes = contour(volcano, n = 20, add = TRUE))
+dev.off()
 
 
-# --------------------------------------- #
-# GRAFIKØ EKRANE IÐSAUGOJIMAS             #
-# --------------------------------------- #
+# Rastrinës grafikos paveiksliuko dydis iðreiðkiamas taðkø skaièiumi - paprastai
+# nurodomas plotis ir aukðtis. Realus paveikslo dydis ekrane arba ant popieriaus 
+# priklauso nuo taðkø tankio; kuo taðkø tankis didesnis, tuo paveikslas maþesnis. 
+# Taðkø tankis ekrane nurodomas PPI (points per inch), o spausdinto paveiksliuko 
+# taðkø tankis nurodomas DPI (dots per inch) vienetais. Kompiuterio ekrane taðkø 
+# tankis standartiðkai yra 72 ppi. Spaudoje, kur reikalinga aukðta vaizdo kokybë, 
+# paveiksliukas gali bûti 300 arba net ir 600 dpi.
 
+# Rastrinës grafikos funkcijose taðkø tankis nustatomas naudojant parametrà res. 
+# Tarkime, kad atspausdintas 200 ppi paveiksliukas turi bûti 8 x 6 coliø dydþio. 
+# Toká grafikà iðsaugosime PNG formatu. Nesunku apskaièiuoti, kad paveikslas bus 
+# 1600 x 1200 pikseliø dydþio.
+
+png(file = "zemelapis-8x6-200ppi.png", 8, 6, units = "in", res = 200)
+  filled.contour(volcano, color = terrain.colors, nlevels = 20, 
+  	                  plot.axes = contour(volcano, n = 20, add = TRUE))
+dev.off()
+
+
+# NAUDINGA ------------------------------
+
+# Gana daþnai pasitaiko situacija, kada reikia nubraiþyti ir iðsaugoti keletà to 
+# paties tipo grafikø. Tipinë situacija -- analogiðkø skaièiavimø su skirtingais
+# duomenimis rezultatø atvaizdavimas ir jø palyginimas. 
+
+# Pavyzdþiui, turime matricà su 25 stulpeliais. Reikia nubraiþyti visø kintamøjø
+# histogramas ir iðsaugoti jas PNG formato failuose su skirtingais pavadinimais.
+# Èia panaudosime modeliuotus duomenis.
+
+duomenys <- replicate(25, rnorm(200, sample(20, 1)))
+
+# Paprasèiausias bûdas atlikti ðià uþduotá -- histogramos braiþymo funkcijà hist 
+# ádëti á ciklà, kurio indeksas perbëga per matricos stulpelius. Kadangi grafikà
+# reikia iðsaugoti vis kitame faile, failo vardus sudarome kiekvienos iteracijos 
+# metu. Paprasèiausia prie failo vardo pridëti numerá, tam naudojame f-jà paste.
+
+for (i in 1:25) {
+
+  failas <- paste("histograma-", i, ".png", sep = "")
+
+  png(file = failas, 800, 600)
+    hist(duomenys[, i])
+  dev.off()
+}
+
+# Perþiûrint gautas histogramas, ið karto iðryðkëja keletas trûkumø. Pvz., failø 
+# numeracija teisinga, bet jø iðdëstymo tvarka 1, 10, 11, ..., 19, 2, 20 ir t.t.
+# yra nepatogi. Visø histogramø antraðtës yra vienodos. Histogramos ið skirtingø
+# failø tarpusavyje nepalyginamos, kadangi visø jø aðiø ribos yra skirtingos. Ðá 
+# grafikø braiþymo algoritmà galima patobulinti ir iðtaisyti pastebëtus trûkumus:
+#
+#   1. failo vardus numeruoti pradedant nuo 01, 02 ir t.t.;
+#   2. kiekvienam grafikui uþdëti individualià antraðtæ;
+#   3. nustatyti bendras visiems grafikams aðiø kitimo ribas;
+#   4. visoms histogramoms nustatyti vienodà stulpeliø skaièiø;
+#   5. automatiðkai nustatyti iteracijø skaièiø.
+
+
+# Pirmiausia nustatome, kokiose ribose kinta visø lentelës kintamøjø reikðmës, o
+# tada jas ðiek tiek iðpleèiame ir suapvaliname iki sveikø reikðmiø. Histogramos
+# stulpeliø maksimalus aukðtis parenkamas bandymø keliu.
+
+xx <- round(range(duomenys) + c(-0.5, 0.5)) 
+yy <- c(0, 60)
+
+
+for (i in 1:ncol(duomenys)) {
+
+  nr <- sprintf("%02d", i)
+  failas   <- paste("histograma-", nr, ".png", sep = "")
+  antraðtë <- paste("Histogramos numeris", nr)    
+
+  png(file = failas, 800, 600)
+    hist(duomenys[, i], breaks = 10, xlim = xx, ylim = yy, ann = FALSE)
+    title(main = antraðtë, xlab = "x")
+  dev.off()
+}
 
 
 # UÞDUOTIS ------------------------------ 
