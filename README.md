@@ -17,7 +17,8 @@ Konspektą sudaro kelios dalys, kurios pirmiausia apima pagrindines darbo su baz
 
   - veiksmai su duomenų struktūromis,
   - pagrindinės grafikų braižymo procedūros,
-  - atsitiktinių dydžių generavimas ir jų funkcijos.
+  - atsitiktinių dydžių generavimas ir jų funkcijos,
+  - tekstinių duomenų analizė.
 
 ### Bazinės duomenų struktūros ###
 
