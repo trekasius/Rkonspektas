@@ -52,7 +52,7 @@
 # PASTABOS ------------------------------
 
 #
-# Paraðyti apie funkcijas do ir count.
+# Paraðyti apie funkcijà count.
 # 
 
 
@@ -633,6 +633,69 @@ with(airquality, tapply(Ozone, Month, . %>% is.na %>% mean(na.rm = TRUE)))
 # kurios reikðmës perduodamos standartinei funkcijai mean su parametru na.rm.
 
 with(airquality, tapply(is.na(Ozone), Month, mean, na.rm = TRUE))
+
+
+# NAUDINGA ------------------------------
+
+# Pagrindines duomenø pertvarkymo funkcijas papildo bendro pobûdþio funkcija do, 
+# kuri leidþia pritaikyti bet kokià funkcijà atskiroms duomenø lentelës grupëms.
+
+# Pavyzdþiui, ið kiekvienos lentelës iris kintamojo Species grupës iðskirsime po
+# tris pirmas eilutes. Pirmuosius n vektoriaus elementø ar lentelës eiluèiø rodo
+# standartinë R funkcija head. Uþraðysime tokià komandà naudojant operatoriø %>%.
+
+iris %>% group_by(Species) %>% do(head(., 3))
+
+# Viena ið f-jos do pritaikymo srièiø -- statistiniø modeliø sudarymas atskiroms 
+# duomenø grupëms. Pvz., ávertinsime paprastosios tiesinës regresijos modelio
+#
+#                               y = a + b*x + e
+#
+# parametrus a ir b, atskirai kiekvienai lentelës iris kintamojo Species grupei.
+# Tarkime, kad èia y yra kintamasis Sepal.Length, o x --- kintamais Sepal.Width.
+# Uþraðysime tokià komandà naudojant operatoriø %>%. Trumpas komentaras - taðkas 
+# iðraiðkoje data = . nurodo, kad modelio duomenys bus viena lentelës iris grupë.
+# Kadangi kintamasis Species turi tris skirtingas reikðmes, grupiø irgi bus trys 
+# ir todël gausime tris to paties modelio parametrø rinkinius.
+
+M <- iris %>% 
+          group_by(Species) %>% 
+                            do(reg = lm(Sepal.Length ~ Sepal.Width, data = .))
+
+# Gautos duomenø lentelës M elementai yra tiesinës regresijos modeliai. Tai gana
+# neáprasta, kadangi áprasta, jog duomenø lentelës stulpeliai yra to paties tipo 
+# reikðmes turintys vektoriai. Taèiau èia prieðtaravimo nëra, kadangi stulpeliai
+# duomenø lentelëje yra list tipo sàraðai, o sàraðai tuo paèiu yra ir vektoriai.
+
+M
+
+# Norint ið gautos lentelës iðtraukti modeliø parametrus, naudosime standartines
+# funkcijas. Pavyzdþiui, modelio koeficientus gràþina funkcija coef. Ðiuo atveju
+# pirmas koeficientas atitinka parametrà a, antras - parametrà b. Ðios funkcijos
+# argumentas bus statistinis modelis, kuris yra lentelës M stulpelio reg reikðmë.
+
+summarise(M, grupë = Species, a = coef(reg)[1], b = coef(reg)[2])
+
+# Gautø modeliø parametrus galima apjungti á vienà data.frame lentelës stulpelá. 
+# Ðiuo atveju funkcijà data.frame ádësime á funkcijà do. Èia galima pakomentuoti:
+# taðkas iðraiðkoje coef(.$reg) nurodo lentelës M eilutæ, o .$reg nurodo eilutës
+# elementà stulpelyje reg, o tai jau yra tiesinës regresijos modelis. Já ádedame
+# á funkcijà coef ir gauname modelio parametrø vektoriø, ðiuo atveju tai a ir b.
+# Kadangi tokiø eiluèiø lentelëje M yra trys, tai galutinëje lentelëje jø bus 6.
+
+do(M, data.frame(rûðis = .$Species, param = c("a", "b"), reikðmë = coef(.$reg)))
+
+
+# Turint statistiná modelá, ávairios jo charakteristikos gaunamos naudojant f-jà
+# summary. Pvz., nustatysime visø 3 modeliø determinacijos koeficiento reikðmes.
+
+summarise(M, R = summary(reg)$r.squared)
+
+# Funkcija summary suformuoja lentelæ su modelio parametrais, jø std. nuokrypiu,
+# hipotezës apie jø lygybës nuliui statistika ir tos hipotezës p-reikðme. Tokias
+# lenteles apjungsime á vienà bendrà data.frame tipo lentelæ.
+
+do(M, data.frame(rûðis = .$Species, param = c("a", "b"), coef(summary(.$reg))))
 
 
 # UÞDUOTIS ------------------------------ 
