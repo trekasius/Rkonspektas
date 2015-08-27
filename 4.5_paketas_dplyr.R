@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2015-08-22 | 2015-08-26
+#   Sukurta: 2015-08-22 | 2015-08-27
 #
 
 
@@ -34,6 +34,7 @@
 #      * funkcija desc 
 #
 #   4. Sàlyginiø charakteristikø skaièiavimas:
+#      * funkcija count
 #      * funkcija summarise
 #      * funkcija summarise_each
 #      * funkcija funs
@@ -52,7 +53,7 @@
 # PASTABOS ------------------------------
 
 #
-# Paraðyti apie funkcijà count.
+# Jokiø pastabø nëra.
 # 
 
 
@@ -389,6 +390,24 @@ arrange(mtcars, cyl, desc(disp))
 # SÀLYGINIØ CHARAKTERISTIKØ SKAIÈIAVIMAS  #
 # --------------------------------------- #
 
+# Imties elementø daþnis gali bûti nustatytas naudojant paketo dplyr f-jà count.
+# Jos sintaksë:
+#                               count(x, ...)
+#
+# Èia x yra duomenø lentelë, vietoje ... raðome vienà ar keli kableliu atskirtus
+# stulpeliø pavadinimus, kuriø reikðmiø daþniai ir bus apskaièiuoti. Pavyzdþiui,
+# apskaièiuosime lentelës airquality stebiniø skaièiø atskirai kiekvienà mënesá.
+
+count(airquality, Month)
+
+# Jei nurodomas daugiau nei vienas kintamasis, sudaroma kryþminë daþniø lentelë.
+# Vietoje lentelës stulpelio vardo galima áraðyti tam tikrà loginæ sàlygà. Pvz.,
+# nustatysime, kiek buvo atvejø, kai kintamojo Temp reikðmë virðijo 70 laipsniø, 
+# o Wind reikðmë didesnë uþ 10 m/s.
+
+count(airquality, T = Temp > 70, W = Wind > 10)
+
+
 # Vienas ið tipiniø veiksmø -- vieno ar keliø lentelës stulpeliø charakteristikø
 # skaièiavimas. Tai gali bûti kintamøjø vidurkiai, elementø skaièius ir panaðios
 # charakteristikos. Ðiam tikslui galima naudoti paketo dplyr funkcijà summarize.
@@ -508,7 +527,8 @@ iris %>% rowwise() %>% summarise(max = max(Sepal.Length, Petal.Length))
 # UÞDUOTIS ------------------------------ 
 
 # 1. Apskaièiuoti lentelës airquality kintamojo Ozone praleistø reikðmiø skaièiø 
-#    atskirai kiekvienam mënesiui. Naudokite paketo dplyr funkcijas.
+#    atskirai kiekvienam mënesiui. Uþraðykite komandà naudojant ðià paketo dplyr
+#    funkcijà: a) count, b) n().
 # 2. Naudodami lentelæ airquality, nustatykite kiekvieno mënesio kintamojo Ozone 
 #    vidurká, kai temperatûra svyruoja intervale [70, 80].
 # 3. Lentelëje airquality ið kiekvieno mënesio iðskirkite po pirmas dvi eilutes.
