@@ -26,7 +26,7 @@
 # PASTABOS ------------------------------
 
 #
-# Pastabø nëra.
+# Paraðyti apie funkcijà symbols.
 # 
 
 
