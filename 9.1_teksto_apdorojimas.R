@@ -1,9 +1,9 @@
 
 #
-#   Dalykas: STATISTINÄ–S DUOMENÅ² ANALIZÄ–S SISTEMA IR PROGRAMAVIMO KALBA R
-#            Baziniai veiksmai su simboliÅ³ sekomis.
+#   Dalykas: STATISTINËS DUOMENØ ANALIZËS SISTEMA IR PROGRAMAVIMO KALBA R
+#            Baziniai veiksmai su simboliø sekomis.
 #
-#  Autorius: Tomas RekaÅ¡ius
+#  Autorius: Tomas Rekağius
 #
 #   Sukurta: 2016-03-21 | 2016-03-29
 #
@@ -12,13 +12,13 @@
 # TURINYS -------------------------------
 
 #
-#   1. SimboliÅ³ tekste pakeitimas:
+#   1. Simboliø tekste pakeitimas:
 #      * funkcija nchar
 #      * funkcija tolower
 #      * funkcija toupper
 #      * funkcija chartr
 #
-#   2. SimboliÅ³ sekÅ³ skaidymas Ä¯ atskiras dalis:
+#   2. Simboliø sekø skaidymas á atskiras dalis:
 #      * funkcija substr
 #      * funkcija strsplit
 #
@@ -27,34 +27,34 @@
 # PASTABOS ------------------------------
 
 #
-# PastabÅ³ nÄ—ra.
+# Pastabø nëra.
 # 
 
 
 # NUSTATYMAI ----------------------------
 
-# Nustatoma lietuviÅ¡ka lokalÄ—. 
+# Nustatoma lietuviğka lokalë. 
 Sys.setlocale(locale = "Lithuanian")
 
 # Nustatomas darbinis katalogas.
 setwd("C:/Downloads")
 
-# IÅ¡trinami visi seni kintamieji.
+# Iğtrinami visi seni kintamieji.
 rm(list = ls())
 
 
 # --------------------------------------- #
-# SIMBOLIÅ² SEKOJE PAKEITIMAS              #
+# SIMBOLIØ SEKOJE PAKEITIMAS              #
 # --------------------------------------- #
 
-# TeorinÄ—je informatikoje apibrÄ—Å¾iamas specialus duomenÅ³ tipas --- string. Tokio 
-# duomenÅ³ tipo reikÅ¡mÄ—s yra baigtinÄ¯ elementÅ³ skaiÄiÅ³ turinÄios sekos, sudarytos 
-# iÅ¡ bet kokia tvarka iÅ¡dÄ—stytÅ³ simboliÅ³ iÅ¡ tam tikros aibÄ—s, vadinamos alfabetu.
-# DuomenÅ³ tipas tuo paÄiu apibrÄ—Å¾ia ir veiksmus su string tipo kintamaisiais.
+# Teorinëje informatikoje apibrëşiamas specialus duomenø tipas --- string. Tokio 
+# duomenø tipo reikğmës yra baigtiná elementø skaièiø turinèios sekos, sudarytos 
+# iğ bet kokia tvarka iğdëstytø simboliø iğ tam tikros aibës, vadinamos alfabetu.
+# Duomenø tipas tuo paèiu apibrëşia ir veiksmus su string tipo kintamaisiais.
 
-# SimboliÅ³ seka raÅ¡oma tarp viengubÅ³ ar dvigubÅ³ kabuÄiÅ³. SimboliÅ³ sekas, kaip ir
-# kitus vienodo tipo elementus, galima apjungti Ä¯ vektorius. R turi keletÄ… tokiÅ³
-# tekstiniÅ³ vektoriÅ³ -- konstantÅ³. Tai didÅ¾iosios ir maÅ¾osios raidÄ—s bei mÄ—nesiÅ³
+# Simboliø seka rağoma tarp viengubø ar dvigubø kabuèiø. Simboliø sekas, kaip ir
+# kitus vienodo tipo elementus, galima apjungti á vektorius. R turi keletà tokiø
+# tekstiniø vektoriø -- konstantø. Tai didşiosios ir maşosios raidës bei mënesiø
 # pavadinimai.
 
 letters
@@ -63,154 +63,154 @@ LETTERS
 month.abb
 month.name
 
-# SekÅ³ skaiÄius tokiame vektoriuje nustatomas naudojant standartinÄ™ f-jÄ… length.
-# PavyzdÅ¾iui, mÄ—nesiÅ³ pavadinimÅ³ yra 12:
+# Sekø skaièius tokiame vektoriuje nustatomas naudojant standartinæ f-jà length.
+# Pavyzdşiui, mënesiø pavadinimø yra 12:
 
 length(month.name)
 
-# SimboliÅ³ skaiÄiÅ³ sekoje vadinkime sekos ilgiu. Jam apskaiÄiuoti naudojama f-jÄ… 
+# Simboliø skaièiø sekoje vadinkime sekos ilgiu. Jam apskaièiuoti naudojama f-jà 
 # nchar. Jos parametrai:
 #
-#          x -- simboliÅ³ seka arba keletos sekÅ³ vektorius,
-#       type -- sekos dydÅ¾io matavimo vienetai: "bytes", "chars" arba "width".
+#          x -- simboliø seka arba keletos sekø vektorius,
+#       type -- sekos dydşio matavimo vienetai: "bytes", "chars" arba "width".
 
-# Funkcijos nchar rezultatas yra skaiÄiÅ³ vektorius. Jo elementÅ³ skaiÄius sutampa
-# su vektoriaus x elementÅ³ skaiÄiumi. PavyzdÅ¾iui, nustatysime mÄ—nesiÅ³ pavadinimÅ³
+# Funkcijos nchar rezultatas yra skaièiø vektorius. Jo elementø skaièius sutampa
+# su vektoriaus x elementø skaièiumi. Pavyzdşiui, nustatysime mënesiø pavadinimø
 # ilgius.
 
 nchar(month.name)
 
-# TokÄ¯ ilgiÅ³ vektoriÅ³ galima panaudoti ilgiausios sekos nustatymui ir iÅ¡rinkimui.
-# PavyzdÅ¾iui, nustatysime, kurio mÄ—nesio pavadinimas ilgiausias.
+# Toká ilgiø vektoriø galima panaudoti ilgiausios sekos nustatymui ir iğrinkimui.
+# Pavyzdşiui, nustatysime, kurio mënesio pavadinimas ilgiausias.
 
 month.name[which.max(nchar(month.name))]
 
-# Atskiru atveju sekÅ³ vektorius gali bÅ«ti ir viena seka. PavyzdÅ¾iui, nustatysime 
-# ilgiausio daniÅ¡ko Å¾odÅ¾io ilgÄ¯.
+# Atskiru atveju sekø vektorius gali bûti ir viena seka. Pavyzdşiui, nustatysime 
+# ilgiausio daniğko şodşio ilgá.
 
-Å¾odis <- "Kindercarnavalsoptochtvoorbereidingswerkzaamhedenplan"
-nchar(Å¾odis)
+şodis <- "Kindercarnavalsoptochtvoorbereidingswerkzaamhedenplan"
+nchar(şodis)
 
 
-# Kartais nÄ—ra jokio skirtumo, kokiomis raidÄ—mis paraÅ¡ytas tekstas, didÅ¾iosiomis 
-# ar maÅ¾osomis. PavyzdÅ¾iui, bioinformatikoje pagrindinis tyrimo objektas yra DNR 
-# arba amino rÅ«gÅ¡ÄiÅ³ sekos. DNR sekos uÅ¾raÅ¡omos simboliais iÅ¡ aibÄ—s {A, C, G, T}.
-# TaÄiau ta pati seka gali bÅ«ti uÅ¾raÅ¡yta ir maÅ¾osiomis raidÄ—mis -- skirtumo nÄ—ra.
-# Atliekant natÅ«ralios kalbos tekstÅ³ statistinÄ™ analizÄ™, didÅ¾iosios bei maÅ¾osios
-# raidÄ—s daÅ¾niausiai taip pat neskiriamos, o kartais tiesiog reikia suvienodinti 
-# raidÅ¾iÅ³ registrÄ…. Tam naudojamos funkcijos toupper ir tolower.
+# Kartais nëra jokio skirtumo, kokiomis raidëmis parağytas tekstas, didşiosiomis 
+# ar maşosomis. Pavyzdşiui, bioinformatikoje pagrindinis tyrimo objektas yra DNR 
+# arba amino rûgğèiø sekos. DNR sekos uşrağomos simboliais iğ aibës {A, C, G, T}.
+# Taèiau ta pati seka gali bûti uşrağyta ir maşosiomis raidëmis -- skirtumo nëra.
+# Atliekant natûralios kalbos tekstø statistinæ analizæ, didşiosios bei maşosios
+# raidës daşniausiai taip pat neskiriamos, o kartais tiesiog reikia suvienodinti 
+# raidşiø registrà. Tam naudojamos funkcijos toupper ir tolower.
 
-# PavyzdÅ¾iui, iÅ¡ didÅ¾iÅ³jÅ³ lietuviÅ¡kos abÄ—cÄ—lÄ—s raidÅ¾iÅ³ vektoriaus gausime maÅ¾Å³jÅ³ 
-# raidÅ¾iÅ³ vektoriÅ³.
+# Pavyzdşiui, iğ didşiøjø lietuviğkos abëcëlës raidşiø vektoriaus gausime maşøjø 
+# raidşiø vektoriø.
 
-RAIDÄ–S <- c("A", "Ä„", "B", "C", "ÄŒ", "D", "E", "Ä˜", 
-            "Ä–", "F", "G", "H", "I", "Ä®", "Y", "J", 
+RAIDËS <- c("A", "À", "B", "C", "È", "D", "E", "Æ", 
+            "Ë", "F", "G", "H", "I", "Á", "Y", "J", 
             "K", "L", "M", "N", "O", "P", "R", "S", 
-            "Å ", "T", "U", "Å²", "Åª", "V", "Z", "Å½")
+            "Ğ", "T", "U", "Ø", "Û", "V", "Z", "Ş")
 
-raidÄ—s <- tolower(RAIDÄ–S)
-raidÄ—s
+raidës <- tolower(RAIDËS)
+raidës
 
 
-# Jei vienus simbolius sekoje reikia pakeisti Ä¯ kitus, naudojama funkcija chartr.
+# Jei vienus simbolius sekoje reikia pakeisti á kitus, naudojama funkcija chartr.
 # Jos parametrai:
 #
-#        old -- keiÄiamÅ³ simboliÅ³ seka,
-#        new -- pakeistÅ³ simboliÅ³ seka,
-#          x -- seka, kurioje atliekamas simboliÅ³ pakeitimas.
+#        old -- keièiamø simboliø seka,
+#        new -- pakeistø simboliø seka,
+#          x -- seka, kurioje atliekamas simboliø pakeitimas.
 
-# PavyzdÅ¾iui, Å¡iÄ… funkcijÄ… galima panaudoti tuo atveju, kai visame tekste reikia 
-# pakeisti vienÄ… kokÄ¯ nors neteisingai naudojamÄ… simbolÄ¯ Ä¯ kitÄ… simbolÄ¯. Tarkime,
-# Å¾inome, kad Bertrand Russell sakinyje vietoje simbolio "?" turi bÅ«ti raidÄ— "i".
+# Pavyzdşiui, ğià funkcijà galima panaudoti tuo atveju, kai visame tekste reikia 
+# pakeisti vienà koká nors neteisingai naudojamà simbolá á kità simbolá. Tarkime,
+# şinome, kad Bertrand Russell sakinyje vietoje simbolio "?" turi bûti raidë "i".
 
-citata <- "ArÅ¡?aus? g?nÄa? kyla tada, ka? nÄ— v?ena Å¡al?s netur? svar?Å³ Ä¯rodymÅ³."
+citata <- "Arğ?aus? g?nèa? kyla tada, ka? në v?ena ğal?s netur? svar?ø árodymø."
 
 chartr("?", "i", citata)
 
 
-# Atskiru atveju galima pakeisti visas abÄ—cÄ—lÄ—s raides. Tada raidÄ—s tekste lieka 
-# savo vietose, bet pakeiÄia savo tapatybÄ™, todÄ—l pradinis tekstas uÅ¾Å¡ifruojamas. 
-# Toks Å¡ifras vadinamas keitiniÅ³ Å¡ifru (substitution). Vienas seniausiÅ³ keitiniÅ³
-# Å¡ifras --- Cezario Å¡ifras, kuriame kiekviena raidÄ— keiÄiama Ä¯ raidÄ™, stovinÄiÄ…
-# abÄ—cÄ—lÄ—je trimis pozicijomis toliau. Cezario Å¡ifro apibendrinimas --- postÅ«mio
-# Å¡ifras (shift cipher), kuriame postÅ«mis atliekamas per k raidÅ¾iÅ³, 0 < k < n, o 
-# n yra abÄ—cÄ—lÄ—s raidÅ¾iÅ³ skaiÄius. PavyzdÅ¾iui, uÅ¾Å¡ifruosime tekstÄ… taikant tokiÄ… 
-# paprasÄiausiÄ… raidÅ¾iÅ³ keitimo taisyklÄ™: 
+# Atskiru atveju galima pakeisti visas abëcëlës raides. Tada raidës tekste lieka 
+# savo vietose, bet pakeièia savo tapatybæ, todël pradinis tekstas uşğifruojamas. 
+# Toks ğifras vadinamas keitiniø ğifru (substitution). Vienas seniausiø keitiniø
+# ğifras --- Cezario ğifras, kuriame kiekviena raidë keièiama á raidæ, stovinèià
+# abëcëlëje trimis pozicijomis toliau. Cezario ğifro apibendrinimas --- postûmio
+# ğifras (shift cipher), kuriame postûmis atliekamas per k raidşiø, 0 < k < n, o 
+# n yra abëcëlës raidşiø skaièius. Pavyzdşiui, uşğifruosime tekstà taikant tokià 
+# paprasèiausià raidşiø keitimo taisyklæ: 
 #
-#              a --> Ä… --> b --> c --> Ä --> ... --> z --> Å¾ --> a              
+#              a --> à --> b --> c --> è --> ... --> z --> ş --> a              
 
 tekstas <- "Jei jums atrodo, kad nieko nesupratote, tai tikriausiai taip ir yra."
 
-old <- "aÄ…bcÄdeÄ™Ä—fghiÄ¯yjklmnoprsÅ¡tuÅ³Å«vzÅ¾"
-new <- "Ä…bcÄdeÄ™Ä—fghiÄ¯yjklmnoprsÅ¡tuÅ³Å«vzÅ¾a"
+old <- "aàbcèdeæëfghiáyjklmnoprsğtuøûvzş"
+new <- "àbcèdeæëfghiáyjklmnoprsğtuøûvzşa"
 
 chartr(old, new, tekstas)
 
 
-# UÅ½DUOTIS ------------------------------ 
+# UŞDUOTIS ------------------------------ 
 
-# 1. UÅ¾raÅ¡ykite komandÄ…, kuri lietuviÅ¡kas didÅ¾iÄ…sias ir maÅ¾Ä…sias raides pakeistÅ³ 
-#    Ä¯ atitinkamas lotyniÅ¡kas raides.
-# 2. UÅ¾raÅ¡ykite tokiÄ… komandÄ…, kad duotas tekstas bÅ«tÅ³ uÅ¾Å¡ifruotas Cezario Å¡ifru.
-#    Sugalvokite, kaip iÅ¡Å¡ifruoti taip uÅ¾Å¡ifruotÄ… tekstÄ….
+# 1. Uşrağykite komandà, kuri lietuviğkas didşiàsias ir maşàsias raides pakeistø 
+#    á atitinkamas lotyniğkas raides.
+# 2. Uşrağykite tokià komandà, kad duotas tekstas bûtø uşğifruotas Cezario ğifru.
+#    Sugalvokite, kaip iğğifruoti taip uşğifruotà tekstà.
 
 
 # --------------------------------------- #
-# SUBSEKOS IÅ SKYRIMAS                     #
+# SUBSEKOS IĞSKYRIMAS                     #
 # --------------------------------------- #
 
-# PaÅ¾ymÄ—kime n simboliÅ³ sekÄ… L = s_1 s_2 ... s_n. Tada seka S = s_i ... s_j, kur
+# Paşymëkime n simboliø sekà L = s_1 s_2 ... s_n. Tada seka S = s_i ... s_j, kur
 # 1 <= i <= j <= n, bus vadinama sekos L subseka (substring). Jeigu sekoje L yra
-# tarpÅ³, tai subseka S taip pat gali bÅ«ti sudaryta vien iÅ¡ tarpÅ³, taÄiau subseka 
-# negali bÅ«ti tuÅ¡Äia seka "". Atskirais atvejais gaunamos tokios subsekos: 
+# tarpø, tai subseka S taip pat gali bûti sudaryta vien iğ tarpø, taèiau subseka 
+# negali bûti tuğèia seka "". Atskirais atvejais gaunamos tokios subsekos: 
 # 
 #  prefiksas -- kai i = 1,
 #   sufiksas -- kai j = n.
 
-# R kalboje subsekos iÅ¡skyrimui arba jos keitimui naudojama funkcija substr. Jos 
+# R kalboje subsekos iğskyrimui arba jos keitimui naudojama funkcija substr. Jos 
 # parametrai:
 #
-#          x -- pradinÄ— simboliÅ³ seka arba sekÅ³ vektorius,
-#      start -- iÅ¡skiriamos subsekos pirmojo simbolio eilÄ—s numeris i,
-#       stop -- iÅ¡skiriamos subsekos paskutinio simbolio eilÄ—s numeris j.
+#          x -- pradinë simboliø seka arba sekø vektorius,
+#      start -- iğskiriamos subsekos pirmojo simbolio eilës numeris i,
+#       stop -- iğskiriamos subsekos paskutinio simbolio eilës numeris j.
 
-# ParametrÅ³ start ir stop reikÅ¡mÄ—s nebÅ«tinai turi bÅ«ti vienas skaiÄius -- galima 
-# priskirti ir skaiÄiÅ³ vektoriÅ³. Tada iÅ¡ sekos bus iÅ¡skirtos kelios jos subsekos.
+# Parametrø start ir stop reikğmës nebûtinai turi bûti vienas skaièius -- galima 
+# priskirti ir skaièiø vektoriø. Tada iğ sekos bus iğskirtos kelios jos subsekos.
 
 
-# Akrostichas - tai eiliuotas kÅ«rinys, kurio eiluÄiÅ³ pirmosios raidÄ—s, skaitomos
-# iÅ¡ virÅ¡aus Ä¯ apaÄiÄ…, sudaro atskirÄ… Å¾odÄ¯. AntikinÄ—je Graikijoje, Romoje ir net
-# ViduramÅ¾iais buvo Ä¯prasta akrostichu Ä¯raÅ¡yti autoriaus vardÄ…. Kartais neÅ¾inomÄ…
-# teksto autoriÅ³ pavyksta identifikuoti pagal akrostichÄ…. Pirma lietuviÅ¡ka knyga
-# taip pat turi akrostichÄ… -- taip Martynas MaÅ¾vydas lotyniÅ¡kai Ä¯raÅ¡Ä— savo vardÄ… 
-# MARTINUS MASVIDIUS, kuris, beje, buvo pastebÄ—tas tik XX amÅ¾iuje!
+# Akrostichas - tai eiliuotas kûrinys, kurio eiluèiø pirmosios raidës, skaitomos
+# iğ virğaus á apaèià, sudaro atskirà şodá. Antikinëje Graikijoje, Romoje ir net
+# Viduramşiais buvo áprasta akrostichu árağyti autoriaus vardà. Kartais neşinomà
+# teksto autoriø pavyksta identifikuoti pagal akrostichà. Pirma lietuviğka knyga
+# taip pat turi akrostichà -- taip Martynas Maşvydas lotyniğkai árağë savo vardà 
+# MARTINUS MASVIDIUS, kuris, beje, buvo pastebëtas tik XX amşiuje!
 
-# IÅ¡nagrinÄ—sime Vinco Kudirkos eilÄ—raÅ¡tÄ¯ "MÄ¯slÄ—s". EilÄ—raÅ¡Äio tekstas padalintas
-# Ä¯ atskiras eilutes. IÅ¡ kiekvienos eilutÄ—s iÅ¡skirsime pirmÄ…jÄ… jos raidÄ™.
+# Iğnagrinësime Vinco Kudirkos eilërağtá "Máslës". Eilërağèio tekstas padalintas
+# á atskiras eilutes. Iğ kiekvienos eilutës iğskirsime pirmàjà jos raidæ.
 
-eilÄ—raÅ¡tis <- c("Dievas visad ant lÅ«pÅ³, o Å¡irdyje velnias;",
-                "Akis tuojau uÅ¾merkia iÅ¡vydusi kelnes;",
-                "VaikÅ¡Äioja atsiplÄ—Å¡us â€“ Ä¯Å¾adai mat toki;",
+eilërağtis <- c("Dievas visad ant lûpø, o ğirdyje velnias;",
+                "Akis tuojau uşmerkia iğvydusi kelnes;",
+                "Vaikğèioja atsiplëğus – áşadai mat toki;",
                 "Atmintyje tik laiko, kur atlaidai koki",
-                "Tur lieÅ¾uvÄ¯ bjauresnÄ¯ uÅ¾ gyvatÄ—s gylÄ¯;",
-                "Kasdien tupi baÅ¾nyÄioj, nes tinginÄ¯ myli.",
-                "Atminki, kas tai bÅ«tÅ³, jei mÄ¯slius mint moki?")
-eilÄ—raÅ¡tis
+                "Tur lieşuvá bjauresná uş gyvatës gylá;",
+                "Kasdien tupi başnyèioj, nes tinginá myli.",
+                "Atminki, kas tai bûtø, jei máslius mint moki?")
+eilërağtis
 
-# Kadangi iÅ¡ kiekvienos eilutÄ—s reikia iÅ¡skirti po vienÄ… raidÄ™, funkcijos substr 
-# parametrÅ³ start ir stop reikÅ¡mÄ—s sutampa.
+# Kadangi iğ kiekvienos eilutës reikia iğskirti po vienà raidæ, funkcijos substr 
+# parametrø start ir stop reikğmës sutampa.
 
-substr(eilÄ—raÅ¡tis, 1, 1)
+substr(eilërağtis, 1, 1)
 
 
-# SufiksÅ³ medis --- tai medÅ¾io pavidalo abstrakti duomenÅ³ struktÅ«ra, sudaryta iÅ¡
-# visÅ³ sekos L sufiksÅ³. Jei seka L turi n simboliÅ³, tada jos sufiksÅ³ medis turÄ—s 
-# n numeruotÅ³ virÅ¡Å«niÅ³ (lapÅ³). Visos vidinÄ—s virÅ¡Å«nÄ—s, iÅ¡skyrus Å¡aknÄ¯, turi bent 
-# dvi briaunas (Å¡akas). Kiekviena briauna paÅ¾ymima simboliÅ³ seka, kuri yra sekos 
-# L subseka, taÄiau iÅ¡ tos paÄios virÅ¡Å«nÄ—s iÅ¡einanÄios briaunos negali prasidÄ—ti 
-# tuo paÄiu simboliu. Seka, kuri gaunama apjungus visas briaunas nuo Å¡aknies iki
-# vieno pasirinkto lapo, yra kaÅ¾kuris pradinÄ—s sekos sufiksas. PavyzdÅ¾iui, sekos 
-# "susisuko" sufiksÅ³ medis atrodo taip:
+# Sufiksø medis --- tai medşio pavidalo abstrakti duomenø struktûra, sudaryta iğ
+# visø sekos L sufiksø. Jei seka L turi n simboliø, tada jos sufiksø medis turës 
+# n numeruotø virğûniø (lapø). Visos vidinës virğûnës, iğskyrus ğakná, turi bent 
+# dvi briaunas (ğakas). Kiekviena briauna paşymima simboliø seka, kuri yra sekos 
+# L subseka, taèiau iğ tos paèios virğûnës iğeinanèios briaunos negali prasidëti 
+# tuo paèiu simboliu. Seka, kuri gaunama apjungus visas briaunas nuo ğaknies iki
+# vieno pasirinkto lapo, yra kaşkuris pradinës sekos sufiksas. Pavyzdşiui, sekos 
+# "susisuko" sufiksø medis atrodo taip:
 #                                                  sufiksai
 #                                                 ----------
 #
@@ -231,15 +231,15 @@ substr(eilÄ—raÅ¡tis, 1, 1)
 #               +---o                              o
 
 
-# Yra keletas sufiksÅ³ medÅ¾io sudarymo algoritmÅ³. PirmÄ… algoritmÄ… 1973 m. pasiÅ«lÄ—
-# Weiner, kurÄ¯ 1976 m. supaprastino McCreight. Ukkonen 1995 m. pasiÅ«lÄ— greitesnÄ¯,
-# bet ir sudÄ—tingesnÄ¯ algoritmÄ…. Farach 1997 m. gavo optimalÅ³ visiems alfabetams 
-# sufiksÅ³ medÅ¾iÅ³ sudarymo algoritmÄ….
+# Yra keletas sufiksø medşio sudarymo algoritmø. Pirmà algoritmà 1973 m. pasiûlë
+# Weiner, kurá 1976 m. supaprastino McCreight. Ukkonen 1995 m. pasiûlë greitesná,
+# bet ir sudëtingesná algoritmà. Farach 1997 m. gavo optimalø visiems alfabetams 
+# sufiksø medşiø sudarymo algoritmà.
 
-# SufiksÅ³ medÅ¾iai plaÄiai naudojami bioinformatikoje ir kitose su teksto analize
+# Sufiksø medşiai plaèiai naudojami bioinformatikoje ir kitose su teksto analize
 # susijusiose srityse, kur reikia nustatyti, ar tam tikra seka S yra kitos sekos
-# L subseka. SufiksÅ³ medÅ¾io sudarymo algoritmai gana sudÄ—tingi, todÄ—l Äia paties
-# medÅ¾io nesudarinÄ—sime, taÄiau sudarysime sekos L = "susisuko" sufiksÅ³ vektoriÅ³:
+# L subseka. Sufiksø medşio sudarymo algoritmai gana sudëtingi, todël èia paties
+# medşio nesudarinësime, taèiau sudarysime sekos L = "susisuko" sufiksø vektoriø:
 
 L <- "susisuko"
 n <- nchar(seka)
@@ -248,21 +248,21 @@ S <- substring(L, 1:n, n)
 S
 
 
-# Vienas iÅ¡ pagrindiniÅ³ bioinformatikos tyrimÅ³ objektÅ³ yra DNR ir baltymÅ³ sekos.
-# DNR molekulÄ— gali bÅ«ti labai ilga. Pvz., tipinis bakterijÅ³ DNR sekos ilgis yra
-# tarp 1 ir 10 mln. nukleotidÅ³, Å¾mogaus DNR seka ilgesnÄ— nei 3 mlrd. nukleotidÅ³.
-# DaÅ¾niausiai nagrinÄ—jama ne visa organizmo DNR seka, o tik tam tikra jos dalis.
+# Vienas iğ pagrindiniø bioinformatikos tyrimø objektø yra DNR ir baltymø sekos.
+# DNR molekulë gali bûti labai ilga. Pvz., tipinis bakterijø DNR sekos ilgis yra
+# tarp 1 ir 10 mln. nukleotidø, şmogaus DNR seka ilgesnë nei 3 mlrd. nukleotidø.
+# Daşniausiai nagrinëjama ne visa organizmo DNR seka, o tik tam tikra jos dalis.
 
-# Å½inoma, kad DNR sekoje nÄ—ra tarpÅ³ ar kitÅ³ natÅ«ralioms kalboms bÅ«dingÅ³ skyrybos 
-# Å¾enklÅ³, todÄ—l seka skaitoma iÅ¡tisai. Sudaroma tokio paties ilgio subsekÅ³ seka, 
+# Şinoma, kad DNR sekoje nëra tarpø ar kitø natûralioms kalboms bûdingø skyrybos 
+# şenklø, todël seka skaitoma iğtisai. Sudaroma tokio paties ilgio subsekø seka, 
 # kur pirmoji subseka prasideda pirmuoju sekos nariu, antroji - antruoju ir t.t. 
-# Tokiu bÅ«du gaunamas taip vadinamas slenkantis langas, kurio plotis k yra lygus
-# slenkanÄios subsekos ilgiui. Kuo maÅ¾esnis langas, tuo didesnis slenkanÄiÅ³ sekÅ³ 
-# arba taip vadinamÅ³ Å¾odÅ¾iÅ³ skaiÄius. KraÅ¡tutiniu atveju, kai k = 1, tai gauname 
-# atskirÅ³ pradinÄ—s sekos simboliÅ³ sekÄ…. 
+# Tokiu bûdu gaunamas taip vadinamas slenkantis langas, kurio plotis k yra lygus
+# slenkanèios subsekos ilgiui. Kuo maşesnis langas, tuo didesnis slenkanèiø sekø 
+# arba taip vadinamø şodşiø skaièius. Krağtutiniu atveju, kai k = 1, tai gauname 
+# atskirø pradinës sekos simboliø sekà. 
 
-# PavyzdÅ¾iui, duotas DNR sekos fragmentas. Naudojant slenkantÄ¯ langÄ…, sudarysime 
-# Å¡iÄ… sekÄ… sudaranÄiÅ³ Å¾odÅ¾iÅ³ iÅ¡ k = 3 simboliÅ³ aibÄ™ ir gausime jÅ³ daÅ¾niÅ³ lentelÄ™.
+# Pavyzdşiui, duotas DNR sekos fragmentas. Naudojant slenkantá langà, sudarysime 
+# ğià sekà sudaranèiø şodşiø iğ k = 3 simboliø aibæ ir gausime jø daşniø lentelæ.
 
 dnr <- "GCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGCT"
 
@@ -272,151 +272,151 @@ k <- 3
 w <- substring(dnr, 1:(n-k+1), k:n)
 w
 
-# Pagal Å¾odÅ¾iÅ³ daÅ¾niÅ³ pasiskirstymÄ… galima sprÄ™sti apie statistines sekÅ³ savybes.
-# Kadangi DNR sekos alfabetÄ… sudaro keturios raidÄ—s, tai Å¾odÅ¾iÅ³ iÅ¡ trijÅ³ raidÅ¾iÅ³ 
-# yra 4^3 = 64. NagrinÄ—jama DNR seka palyginus trumpa, tad didÅ¾ioji dalis Å¾odÅ¾iÅ³ 
-# Å¡ioje sekoje pasirodo tik po vienÄ… kartÄ…, o kai kurie Å¾odÅ¾iai visai nepasirodo. 
-# PavyzdÅ¾iui, sekoje nÄ—ra Å¾odÅ¾iÅ³ "ACA", "CCC" ir dar keletos kitÅ³. 
+# Pagal şodşiø daşniø pasiskirstymà galima spræsti apie statistines sekø savybes.
+# Kadangi DNR sekos alfabetà sudaro keturios raidës, tai şodşiø iğ trijø raidşiø 
+# yra 4^3 = 64. Nagrinëjama DNR seka palyginus trumpa, tad didşioji dalis şodşiø 
+# ğioje sekoje pasirodo tik po vienà kartà, o kai kurie şodşiai visai nepasirodo. 
+# Pavyzdşiui, sekoje nëra şodşiø "ACA", "CCC" ir dar keletos kitø. 
 
 table(w)
 
 
-# Funkcija substr gali bÅ«ti naudojama ir vienos subsekos pakeitimui Ä¯ kitÄ… tokio
-# paties ilgio subsekÄ…. PavyzdÅ¾iui, turime failÅ³ pavadinimÅ³ vektoriÅ³. VisÅ³ failÅ³
-# pavadinimai standartiniai ir vienodo ilgio. Pakeisime failo iÅ¡plÄ—timÄ… iÅ¡ "txt"
-# Ä¯ "rez".
+# Funkcija substr gali bûti naudojama ir vienos subsekos pakeitimui á kità tokio
+# paties ilgio subsekà. Pavyzdşiui, turime failø pavadinimø vektoriø. Visø failø
+# pavadinimai standartiniai ir vienodo ilgio. Pakeisime failo iğplëtimà iğ "txt"
+# á "rez".
 
 failai <- c("failas_01.txt", "failas_02.txt", "failas_03.txt", "failas_04.txt")
 
 substr(failai, 11, 13) <- "rez"
 failai
 
-# Å½inoma, tokiam tikslui naudojama funkcija substr turi labai ribotas pritaikymo
-# galimybes. PavyzdÅ¾iui, Å¡iuo atveju, jei failÅ³ pavadinimai bÅ«tÅ³ skirtingÅ³ ilgiÅ³, 
-# kiekvienam pavadinimui reikÄ—tÅ³ nustatyti vis kitokias indeksÅ³ reikÅ¡mes. Å½ymiai
-# didesnes galimybes turi reguliarios iÅ¡raiÅ¡kos (regular expressions).
+# Şinoma, tokiam tikslui naudojama funkcija substr turi labai ribotas pritaikymo
+# galimybes. Pavyzdşiui, ğiuo atveju, jei failø pavadinimai bûtø skirtingø ilgiø, 
+# kiekvienam pavadinimui reikëtø nustatyti vis kitokias indeksø reikğmes. Şymiai
+# didesnes galimybes turi reguliarios iğraiğkos (regular expressions).
 
 
-# UÅ½DUOTIS ------------------------------ 
+# UŞDUOTIS ------------------------------ 
 
-# 1. UÅ¾raÅ¡ykite komandÄ…, kuri sudarytÅ³ absoliuÄiai visÅ³ sekos L subsekÅ³ vektoriÅ³
-#    ir nustatykite jÅ³ skaiÄiÅ³.
-# 2. UÅ¾raÅ¡ykite komandÄ…, kuri pirmÄ…jÄ… visÅ³ vieno sakinio Å¾odÅ¾iÅ³ raidÄ™ pakeistÅ³ Ä¯ 
-#    atitinkamÄ… didÅ¾iÄ…jÄ… raidÄ™.
-# 3. UÅ¾raÅ¡ykite komandÄ…, kuri DNR sekÄ… suskaidytÅ³ Ä¯ nepersikertanÄius Å¾odÅ¾ius iÅ¡
-#    k = 10 simboliÅ³.
+# 1. Uşrağykite komandà, kuri sudarytø absoliuèiai visø sekos L subsekø vektoriø
+#    ir nustatykite jø skaièiø.
+# 2. Uşrağykite komandà, kuri pirmàjà visø vieno sakinio şodşiø raidæ pakeistø á 
+#    atitinkamà didşiàjà raidæ.
+# 3. Uşrağykite komandà, kuri DNR sekà suskaidytø á nepersikertanèius şodşius iğ
+#    k = 10 simboliø.
 
 
 # --------------------------------------- #
-# SEKOS IÅ SKAIDYMAS Ä® ATSKIRAS DALIS      #
+# SEKOS IĞSKAIDYMAS Á ATSKIRAS DALIS      #
 # --------------------------------------- #
 
-# Vienas iÅ¡ tipiniÅ³ ir daÅ¾nai atliekamÅ³ veiksmÅ³ --- sekos suskaidymas Ä¯ atskiras
-# dalis. PavyzdÅ¾iui, sakinÄ¯ galima suskaidyti Ä¯ atskirus Å¾odÅ¾ius ar net atskirus
-# simbolius. Tekstiniu formatu uÅ¾raÅ¡ytÄ… datÄ… galima iÅ¡skaidyti Ä¯ metus, mÄ—nesius
-# ir dienas ir t. t. Å is suskaidymas primena subsekos iÅ¡skyrimÄ…, bet Å¡iuo atveju
-# laikoma, kad sekos dalys atskirtos tam tikru simboliu ar jÅ³ kombinacija. Pvz.,
-# sakinyje Å¾odÅ¾iai vienas nuo kito atskirti tarpo simboliu, atskiros datos dalys
-# atskiriamos arba brÅ«kÅ¡neliu, arba taÅ¡ku.
+# Vienas iğ tipiniø ir daşnai atliekamø veiksmø --- sekos suskaidymas á atskiras
+# dalis. Pavyzdşiui, sakiná galima suskaidyti á atskirus şodşius ar net atskirus
+# simbolius. Tekstiniu formatu uşrağytà datà galima iğskaidyti á metus, mënesius
+# ir dienas ir t. t. Ğis suskaidymas primena subsekos iğskyrimà, bet ğiuo atveju
+# laikoma, kad sekos dalys atskirtos tam tikru simboliu ar jø kombinacija. Pvz.,
+# sakinyje şodşiai vienas nuo kito atskirti tarpo simboliu, atskiros datos dalys
+# atskiriamos arba brûkğneliu, arba tağku.
 
-# R kalboje sekos skaidymui Ä¯ atskiras dalis naudojama f-ja strsplit. Parametrai:
+# R kalboje sekos skaidymui á atskiras dalis naudojama f-ja strsplit. Parametrai:
 #
-#          x -- seka arba sekÅ³ vektorius,
-#      split -- simbolis arba jÅ³ seka, pagal kuriÄ… skaidoma pradinÄ— seka,
-#      fixed -- loginis, FALSE nurodo, kad split yra ne reguliari iÅ¡raiÅ¡ka.
+#          x -- seka arba sekø vektorius,
+#      split -- simbolis arba jø seka, pagal kurià skaidoma pradinë seka,
+#      fixed -- loginis, FALSE nurodo, kad split yra ne reguliari iğraiğka.
 
 
-# PavyzdÅ¾iui, duota kableliais vienas nuo kito atskirtÅ³ olimpiadiniÅ³ Å¾odÅ¾iÅ³ seka. 
-# Å iÄ… sekÄ… reikia iÅ¡skaidyti Ä¯ atskirus Å¾odÅ¾ius.
+# Pavyzdşiui, duota kableliais vienas nuo kito atskirtø olimpiadiniø şodşiø seka. 
+# Ğià sekà reikia iğskaidyti á atskirus şodşius.
 
-Å¾odÅ¾iai <- "bÄ…la, gÄ™sta, gvÄ™ra, krÄ™Å¡ta, sÄ…la, Å¡Ä…la, Å¡Ä…Å¡ta, tÄ™Å¾ta, trÄ™Å¡ta"
-Å¾odÅ¾iai
+şodşiai <- "bàla, gæsta, gværa, kræğta, sàla, ğàla, ğàğta, tæşta, træğta"
+şodşiai
 
-# Galima pastebÄ—ti, kad Å¡ioje sekoje Å¾odÅ¾iai atskirti ne tik kableliais, bet dar
-# ir tarpais, todÄ—l parametrui split nurodome simboliÅ³ sekÄ… ", ".
+# Galima pastebëti, kad ğioje sekoje şodşiai atskirti ne tik kableliais, bet dar
+# ir tarpais, todël parametrui split nurodome simboliø sekà ", ".
 
-strsplit(Å¾odÅ¾iai, split = ", ")
+strsplit(şodşiai, split = ", ")
 
-# Funkcijos strsplit rezultatas yra list tipo sÄ…raÅ¡as. Tai nelabai patogu, jeigu
-# skaidome vienÄ… sekÄ…, bet labai patogu, jei Ä¯ atskiras dalis skaidomos iÅ¡ karto
-# kelios sekos. Tada gauname sÄ…raÅ¡Ä…, kuris turi tiek elementÅ³, kiek yra pradiniÅ³
-# sekÅ³. SÄ…raÅ¡o elementai yra vektoriai, kuriÅ³ elementai yra atskiros sekÅ³ dalys.
-# PavyzdÅ¾iui, duotas Vilniaus greitÅ³jÅ³ autobusÅ³ marÅ¡rutÅ³ vektorius. IÅ¡skaidysime
-# Å¡iuos marÅ¡rutus Ä¯ atskiras dalis, kurios viena nuo kitos atskirtos brÅ«kÅ¡neliu.
+# Funkcijos strsplit rezultatas yra list tipo sàrağas. Tai nelabai patogu, jeigu
+# skaidome vienà sekà, bet labai patogu, jei á atskiras dalis skaidomos iğ karto
+# kelios sekos. Tada gauname sàrağà, kuris turi tiek elementø, kiek yra pradiniø
+# sekø. Sàrağo elementai yra vektoriai, kuriø elementai yra atskiros sekø dalys.
+# Pavyzdşiui, duotas Vilniaus greitøjø autobusø marğrutø vektorius. Iğskaidysime
+# ğiuos marğrutus á atskiras dalis, kurios viena nuo kitos atskirtos brûkğneliu.
 
-marÅ¡rutai <- c("Stotis-KalvarijÅ³ g.-SantariÅ¡kÄ—s",
-               "SantariÅ¡kÄ—s-LaisvÄ—s pr.-Stotis",
-               "FabijoniÅ¡kÄ—s-Centras-Oro uostas",
-               "PilaitÄ—-Konstitucijos pr.-SaulÄ—tekis",
-               "PaÅ¡ilaiÄiai-Ozo g.-SaulÄ—tekis",
-               "Parko-OlandÅ³ g.-Å½aliasis tiltas")
+marğrutai <- c("Stotis-Kalvarijø g.-Santariğkës",
+               "Santariğkës-Laisvës pr.-Stotis",
+               "Fabijoniğkës-Centras-Oro uostas",
+               "Pilaitë-Konstitucijos pr.-Saulëtekis",
+               "Pağilaièiai-Ozo g.-Saulëtekis",
+               "Parko-Olandø g.-Şaliasis tiltas")
 
-strsplit(marÅ¡rutai, split = "-")
+strsplit(marğrutai, split = "-")
 
 
-# Parametro split reikÅ¡mÄ— yra reguliari iÅ¡raiÅ¡ka - tai tokia simboliÅ³ seka, kuri
-# leidÅ¾ia uÅ¾raÅ¡yti tam tikrÄ… sekos Å¡ablonÄ…. Reguliarios iÅ¡raiÅ¡kos naudoja dviejÅ³
-# tipÅ³ simbolius: simbolius, kurie interpretuojami tiesiogiai, ir metasimbolius,
-# kurie turi specialiÄ… prasmÄ™. Kokie simboliai yra metasimboliai - priklauso nuo
-# reguliariÅ³ iÅ¡raiÅ¡kÅ³ standarto. R naudojamas iÅ¡plÄ—stas reg. iÅ¡raiÅ¡kÅ³ standartas
+# Parametro split reikğmë yra reguliari iğraiğka - tai tokia simboliø seka, kuri
+# leidşia uşrağyti tam tikrà sekos ğablonà. Reguliarios iğraiğkos naudoja dviejø
+# tipø simbolius: simbolius, kurie interpretuojami tiesiogiai, ir metasimbolius,
+# kurie turi specialià prasmæ. Kokie simboliai yra metasimboliai - priklauso nuo
+# reguliariø iğraiğkø standarto. R naudojamas iğplëstas reg. iğraiğkø standartas
 # ERE, kuriame metasimboliai yra
 #
 #                            . \ | ( ) [ { ^ $ * + ? 
 #
-# Jei metasimbolÄ¯ reikia naudoti kaip simbolÄ¯, prieÅ¡ jÄ¯ raÅ¡omas valdymo simbolis. 
-# PavyzdÅ¾iui, R reguliarioje iÅ¡raiÅ¡koje skliaustai () uÅ¾raÅ¡omi \\( \\).
+# Jei metasimbolá reikia naudoti kaip simbolá, prieğ já rağomas valdymo simbolis. 
+# Pavyzdşiui, R reguliarioje iğraiğkoje skliaustai () uşrağomi \\( \\).
 
-# Tuo atveju, kada parametrui split priskiriama seka turi bÅ«ti interpetuojama ne 
-# kaip reguliari iÅ¡raiÅ¡ka, parametrui fixed priskiriama loginÄ— reikÅ¡mÄ— TRUE. Tai
+# Tuo atveju, kada parametrui split priskiriama seka turi bûti interpetuojama ne 
+# kaip reguliari iğraiğka, parametrui fixed priskiriama loginë reikğmë TRUE. Tai
 # nurodo, kad visi metasimboliai bus suprantami, kaip paprasti simboliai.
 
-# PavyzdÅ¾iui, reikia iÅ¡skaidyti tekstiniu formatu uÅ¾raÅ¡ytas datas. Datoje metai,
-# mÄ—nuo ir diena vienas nuo kito atskirti taÅ¡ku.
+# Pavyzdşiui, reikia iğskaidyti tekstiniu formatu uşrağytas datas. Datoje metai,
+# mënuo ir diena vienas nuo kito atskirti tağku.
 
-#          SaulÄ—s        DurbÄ—s        Å½algirio      OrÅ¡os         Salaspilio
+#          Saulës        Durbës        Şalgirio      Orğos         Salaspilio
 #         ------------  ------------  ------------  ------------  ------------ 
 data <- c("1236.09.22", "1260.07.13", "1410.07.15", "1514.09.08", "1605.09.27")
 data
 
-# Reguliariose iÅ¡raiÅ¡kose taÅ¡kas yra metasimbolis, kuris nurodo bet kokÄ¯ simbolÄ¯,
-# tarp jÅ³ ir patÄ¯ taÅ¡kÄ…, todÄ—l datos bus iÅ¡skaidytos pagal skaiÄius ir taÅ¡kus, o 
-# rezultatas bus tuÅ¡Äios sekos.
+# Reguliariose iğraiğkose tağkas yra metasimbolis, kuris nurodo bet koká simbolá,
+# tarp jø ir patá tağkà, todël datos bus iğskaidytos pagal skaièius ir tağkus, o 
+# rezultatas bus tuğèios sekos.
 
 strsplit(data, ".")
 
-# Kad "." bÅ«tÅ³ interpretuojamas kaip taÅ¡kas, pakeiÄiame parametro fixed reikÅ¡mÄ™.
+# Kad "." bûtø interpretuojamas kaip tağkas, pakeièiame parametro fixed reikğmæ.
 
 strsplit(data, ".", fixed = TRUE)
 
-# Naudojant valdymo simbolÄ¯, taÅ¡kÄ… galima uÅ¾raÅ¡yti ir kaip reguliariÄ… iÅ¡raiÅ¡kÄ….
+# Naudojant valdymo simbolá, tağkà galima uşrağyti ir kaip reguliarià iğraiğkà.
 
 strsplit(data, "\\.")
 
 
 # NAUDINGA ------------------------------
 
-# Naudojant reguliarias iÅ¡raiÅ¡kas, sudÄ—tingÄ… taisyklÄ™, pagal kuriÄ… skaidoma seka,
-# galima uÅ¾raÅ¡yti gana kompaktiÅ¡kai. PavyzdÅ¾iui, seka gali bÅ«ti skaidoma Ä¯ dalis 
-# ne pagal vienÄ… konkretÅ³ simbolÄ¯, bet iÅ¡ karto pagal du alternatyvius simbolius. 
-# Alternatyvos reguliariose iÅ¡raiÅ¡kose apjungiamos simboliu |. 
+# Naudojant reguliarias iğraiğkas, sudëtingà taisyklæ, pagal kurià skaidoma seka,
+# galima uşrağyti gana kompaktiğkai. Pavyzdşiui, seka gali bûti skaidoma á dalis 
+# ne pagal vienà konkretø simbolá, bet iğ karto pagal du alternatyvius simbolius. 
+# Alternatyvos reguliariose iğraiğkose apjungiamos simboliu |. 
 
-# PavyzdÅ¾iui, duotas vektorius su Vilniaus, Rygos ir Talino miestÅ³ koordinatÄ—mis. 
-# Å ias koordinates reikia iÅ¡skaidyti Ä¯ laipsnius, minutes ir platumÄ… arba ilgumÄ… 
-# nurodanÄius simbolius. Galima pastebÄ—ti, kad platuma ir ilguma atskirtos tarpu, 
-# o laipsniai ir minutÄ—s turi savo simbolius, todÄ—l Å¡iuo atveju iÅ¡ viso bus trys 
-# alternatyvÅ«s simboliai, pagal kuriuos Ä¯ atskiras dalis skaidoma kiekviena seka.
+# Pavyzdşiui, duotas vektorius su Vilniaus, Rygos ir Talino miestø koordinatëmis. 
+# Ğias koordinates reikia iğskaidyti á laipsnius, minutes ir platumà arba ilgumà 
+# nurodanèius simbolius. Galima pastebëti, kad platuma ir ilguma atskirtos tarpu, 
+# o laipsniai ir minutës turi savo simbolius, todël ğiuo atveju iğ viso bus trys 
+# alternatyvûs simboliai, pagal kuriuos á atskiras dalis skaidoma kiekviena seka.
 
-koordinatÄ—s <- c(Vilnius = "54Â°41'N 25Â°17'E", 
-                    Riga = "56Â°56'N 24Â°06'E", 
-                 Tallinn = "59Â°26'N 24Â°44'E")
+koordinatës <- c(Vilnius = "54°41'N 25°17'E", 
+                    Riga = "56°56'N 24°06'E", 
+                 Tallinn = "59°26'N 24°44'E")
 
-strsplit(koordinatÄ—s, "Â°|'| ")
-strsplit(koordinatÄ—s, "[Â°' ]")
+strsplit(koordinatës, "°|'| ")
+strsplit(koordinatës, "[°' ]")
 
 
-# Jei seka Ä¯ atskiras dalis skaidoma pagal bent vienÄ… kartÄ… pasirodantÄ¯ konkretÅ³ 
-# simbolÄ¯, tai tokiÅ³ sekÅ³ Å¡ablonÄ… galima uÅ¾raÅ¡yti naudojant metasimbolÄ¯ +, kuris
-# nurodo, jog prieÅ¡ jÄ¯ stovintis simbolis sekoje pasirodo vienÄ… ar daugiau kartÅ³.
+# Jei seka á atskiras dalis skaidoma pagal bent vienà kartà pasirodantá konkretø 
+# simbolá, tai tokiø sekø ğablonà galima uşrağyti naudojant metasimbolá +, kuris
+# nurodo, jog prieğ já stovintis simbolis sekoje pasirodo vienà ar daugiau kartø.
 
 serijos <- "1---1--1-1111---1111---11-11-1-111-111-----1-11-----1--1-1-----1-11"
 
@@ -425,73 +425,73 @@ strsplit(serijos, "-+")
 
 # NAUDINGA ------------------------------
 
-# Tekstinio formato failuose gali bÅ«ti saugomi labai Ä¯vairÅ«s duomenys. Pvz., tai
-# gali bÅ«ti paprastas tekstas, DNR seka, programos kodas, duomenÅ³ lentelÄ— ir pan. 
-# Kad duomenys iÅ¡ failo bÅ«tÅ³ nuskaitomi korektiÅ¡kai, kiekvienu atveju naudojamas 
-# tam tikras tekstiniÅ³ duomenÅ³ saugojimo formatas. Vienas iÅ¡ universaliÅ³ duomenÅ³ 
-# lenteliÅ³ uÅ¾raÅ¡ymo formatÅ³ yra CSV (Comma-Separated Values). KintamÅ³jÅ³ reikÅ¡mÄ—s 
-# stulpeliuose atskiriamos kableliu arba kabliataÅ¡kiu.
+# Tekstinio formato failuose gali bûti saugomi labai ávairûs duomenys. Pvz., tai
+# gali bûti paprastas tekstas, DNR seka, programos kodas, duomenø lentelë ir pan. 
+# Kad duomenys iğ failo bûtø nuskaitomi korektiğkai, kiekvienu atveju naudojamas 
+# tam tikras tekstiniø duomenø saugojimo formatas. Vienas iğ universaliø duomenø 
+# lenteliø uşrağymo formatø yra CSV (Comma-Separated Values). Kintamøjø reikğmës 
+# stulpeliuose atskiriamos kableliu arba kabliatağkiu.
 
-# PavyzdÅ¾iui, duotas failas su artimiausiÅ³ metÅ³ saulÄ—s uÅ¾temimÅ³ duomenimis. Data,
-# laikas, uÅ¾temimo tipas, ryÅ¡kumas, trukmÄ— ir koordinatÄ—s atskirtos kabliataÅ¡kiu.
+# Pavyzdşiui, duotas failas su artimiausiø metø saulës uştemimø duomenimis. Data,
+# laikas, uştemimo tipas, ryğkumas, trukmë ir koordinatës atskirtos kabliatağkiu.
 
 failas <-  
-"2015-03-20;09:46:47;Total;1.045;2:47;64.4Â°N;6.6Â°W
-2016-03-09;01:58:19;Total;1.045;4:09;10.1Â°N;148.8Â°E
-2016-09-01;09:08:02;Annular;0.974;3:06;10.7Â°S;37.8Â°E
-2017-02-26;14:54:33;Annular;0.992;0:44;34.7Â°S;31.2Â°W
-2017-08-21;18:26:40;Total;1.031;2:40;37.0Â°N;87.7Â°W
-2019-07-02;19:24:08;Total;1.046;4:33;17.4Â°S;109.0Â°W
-2019-12-26;05:18:53;Annular;0.970;3:40;1.0Â°N;102.3Â°E
-2020-06-21;06:41:15;Annular;0.994;0:38;30.5Â°N;79.7Â°E
-2020-12-14;16:14:39;Total;1.025;2:10;40.3Â°S;67.9Â°W
-2021-06-10;10:43:07;Annular;0.943;3:51;80.8Â°N;66.8Â°W
-2021-12-04;07:34:38;Total;1.037;1:54;76.8Â°S;46.2Â°W
-2023-04-20;04:17:56;Hybrid;1.013;1:16;9.6Â°S;125.8Â°E
-2023-10-14;18:00:41;Annular;0.952;5:17;11.4Â°N;83.1Â°W
-2024-04-08;18:18:29;Total;1.057;4:28;25.3Â°N;104.1Â°W
-2024-10-02;18:46:13;Annular;0.933;7:25;22.0Â°S;114.5Â°W
-2026-02-17;12:13:06;Annular;0.963;2:20;64.7Â°S;86.8Â°E
-2026-08-12;17:47:06;Total;1.039;2:18;65.2Â°N;25.2Â°W
-2027-02-06;16:00:48;Annular;0.928;7:51;31.3Â°S;48.5Â°W
-2027-08-02;10:07:50;Total;1.079;6:23;25.5Â°N;33.2Â°E
-2028-01-26;15:08:59;Annular;0.921;10:27;3.0Â°N;51.5Â°W
-2028-07-22;02:56:40;Total;1.056;5:10;15.6Â°S;126.7Â°E
-2030-06-01;06:29:13;Annular;0.944;5:21;56.5Â°N;80.1Â°E
-2030-11-25;06:51:37;Total;1.047;3:44;43.6Â°S;71.2Â°E"
+"2015-03-20;09:46:47;Total;1.045;2:47;64.4°N;6.6°W
+2016-03-09;01:58:19;Total;1.045;4:09;10.1°N;148.8°E
+2016-09-01;09:08:02;Annular;0.974;3:06;10.7°S;37.8°E
+2017-02-26;14:54:33;Annular;0.992;0:44;34.7°S;31.2°W
+2017-08-21;18:26:40;Total;1.031;2:40;37.0°N;87.7°W
+2019-07-02;19:24:08;Total;1.046;4:33;17.4°S;109.0°W
+2019-12-26;05:18:53;Annular;0.970;3:40;1.0°N;102.3°E
+2020-06-21;06:41:15;Annular;0.994;0:38;30.5°N;79.7°E
+2020-12-14;16:14:39;Total;1.025;2:10;40.3°S;67.9°W
+2021-06-10;10:43:07;Annular;0.943;3:51;80.8°N;66.8°W
+2021-12-04;07:34:38;Total;1.037;1:54;76.8°S;46.2°W
+2023-04-20;04:17:56;Hybrid;1.013;1:16;9.6°S;125.8°E
+2023-10-14;18:00:41;Annular;0.952;5:17;11.4°N;83.1°W
+2024-04-08;18:18:29;Total;1.057;4:28;25.3°N;104.1°W
+2024-10-02;18:46:13;Annular;0.933;7:25;22.0°S;114.5°W
+2026-02-17;12:13:06;Annular;0.963;2:20;64.7°S;86.8°E
+2026-08-12;17:47:06;Total;1.039;2:18;65.2°N;25.2°W
+2027-02-06;16:00:48;Annular;0.928;7:51;31.3°S;48.5°W
+2027-08-02;10:07:50;Total;1.079;6:23;25.5°N;33.2°E
+2028-01-26;15:08:59;Annular;0.921;10:27;3.0°N;51.5°W
+2028-07-22;02:56:40;Total;1.056;5:10;15.6°S;126.7°E
+2030-06-01;06:29:13;Annular;0.944;5:21;56.5°N;80.1°E
+2030-11-25;06:51:37;Total;1.047;3:44;43.6°S;71.2°E"
 
-# Prisijungimui prie virtualaus tekstinio failo naudojame f-jÄ… textConnection, o
-# eiluÄiÅ³ nuskaitymui naudojame funkcijÄ… readLines. Taip gauname vektoriÅ³, kurio 
-# elementai eiluÄiÅ³ simboliÅ³ sekos. TokiÅ³ sekÅ³ yra tiek, kiek faile yra eiluÄiÅ³.
+# Prisijungimui prie virtualaus tekstinio failo naudojame f-jà textConnection, o
+# eiluèiø nuskaitymui naudojame funkcijà readLines. Taip gauname vektoriø, kurio 
+# elementai eiluèiø simboliø sekos. Tokiø sekø yra tiek, kiek faile yra eiluèiø.
 
-eilutÄ—s <- readLines(textConnection(failas))
-eilutÄ—s
+eilutës <- readLines(textConnection(failas))
+eilutës
 
-# CSV faile reikÅ¡mÄ—s eilutÄ—se atskirtos kabliataÅ¡kiu. Pagal jÄ¯ sekÄ… suskaidome Ä¯ 
+# CSV faile reikğmës eilutëse atskirtos kabliatağkiu. Pagal já sekà suskaidome á 
 # atskiras dalis.
 
-eclipses <- strsplit(eilutÄ—s, ";")
+eclipses <- strsplit(eilutës, ";")
 print(eclipses, quote = FALSE)
 
 
-# Paprastai duomenÅ³ lentelÄ—s nuskaitymui iÅ¡ tekstinio failo naudojama tam skirta
-# funkcija read.table. Ji turi parametrÄ… sep, per kurÄ¯ ir nurodoma reikÅ¡mÄ—, kuri
-# atskiria reikÅ¡mes lentelÄ—s stulpeliuose.
+# Paprastai duomenø lentelës nuskaitymui iğ tekstinio failo naudojama tam skirta
+# funkcija read.table. Ji turi parametrà sep, per kurá ir nurodoma reikğmë, kuri
+# atskiria reikğmes lentelës stulpeliuose.
 
 read.table(textConnection(failas), sep = ";")
 
 
-# UÅ½DUOTIS ------------------------------ 
+# UŞDUOTIS ------------------------------ 
 
-# 1. UÅ¾raÅ¡ykite komandÄ…, kuri sudarytÅ³ simboliÅ³ pasirodymo tekste daÅ¾niÅ³ lentelÄ™.
+# 1. Uşrağykite komandà, kuri sudarytø simboliø pasirodymo tekste daşniø lentelæ.
 #
-# 2. UÅ¾raÅ¡ykite komandÄ…, kuri sakinÄ¯ iÅ¡skaidytÅ³ Ä¯ atskirus Å¾odÅ¾ius bei nustatytÅ³
-#    kiekvieno Å¾odÅ¾io ilgÄ¯.
-# 3. Tarkime, kad visÅ³ sakiniÅ³ pabaigÄ… tam tikrame tekste Å¾ymi taÅ¡kas, Å¡auktukas 
-#    arba klaustukas, o po Å¡iÅ³ Å¾enklÅ³ visada prasideda naujas sakinys (realybÄ—je, 
-#    Å¾inoma, taip yra nevisada). UÅ¾raÅ¡ykite komandÄ…, kuri nustatytÅ³, kiek Å¾odÅ¾iÅ³ 
+# 2. Uşrağykite komandà, kuri sakiná iğskaidytø á atskirus şodşius bei nustatytø
+#    kiekvieno şodşio ilgá.
+# 3. Tarkime, kad visø sakiniø pabaigà tam tikrame tekste şymi tağkas, ğauktukas 
+#    arba klaustukas, o po ğiø şenklø visada prasideda naujas sakinys (realybëje, 
+#    şinoma, taip yra nevisada). Uşrağykite komandà, kuri nustatytø, kiek şodşiø 
 #    yra kiekviename duoto teksto sakinyje.
-# 4. Sugalvokite tokiÄ… komandÄ…, kuri nuskaitytÅ³ kabliataÅ¡kiais atskirtÅ³ vektoriÅ³ 
+# 4. Sugalvokite tokià komandà, kuri nuskaitytø kabliatağkiais atskirtø vektoriø 
 #    elementus, kurie vienas nuo kito atskirti kableliais. Pvz., tokia seka turi
 #    4 vektorius: "1.2, 4.9, 3.1; 8.6, 7.4; 2.5, 1.2, 8.2, 1.8; 0.5". Rezultatas
-#    turi bÅ«ti sÄ…raÅ¡as iÅ¡ 4 elementÅ³, kuriÅ³ elementai yra vektoriÅ³ reikÅ¡mÄ—s.
+#    turi bûti sàrağas iğ 4 elementø, kuriø elementai yra vektoriø reikğmës.
