@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2016-03-29 | 2016-04-09
+#   Sukurta: 2016-03-29 | 2016-04-09 | 2016-04-12
 #
 
 
@@ -21,6 +21,7 @@
 #   3. Pagalbinës simboliø sekø atvaizdavimo funkcijos:
 #      * funkcija noquote
 #      * funkcija strtrim
+#      * funkcija abbreviate
 #      * funkcija toString
 #      * funkcija encodeString
 #
@@ -379,6 +380,40 @@ dienos <- c("Pirmadienis", "Antradienis", "Treèiadienis", "Ketvirtadienis",
             "Penktadienis", "Ðeðtadienis", "Sekmadienis") 
 
 strtrim(dienos, 3)
+
+
+# Jeigu sutrumpinta seka turi bûti unikali, naudojama funkcija abbreviate. Sekos 
+# sutrumpinimo algoritmas toks: ið pradþiø ið sekos paðalinami visi tarpai, tada 
+# panaikinamos maþàjà raide uþraðytos balsës, kurios eina po priebalsiø, ir, jei
+# tokia seka turi daugiau simboliø, negu nurodyta, paðalinamos didþiosios raidës.
+# Funkcijos parametrai:
+# 
+#    names.arg -- simboliø sekø vektorius,
+#    minlength -- minimalus sutrumpintos sekos ilgis,
+#          dot -- loginis, nurodo ar trumpinio gale turi bûti dedamas taðkas,
+#       strict -- loginis, nurodo ar bûtinai iðlaikyti minimalø trumpinio ilgá,
+#       method -- c("left.kept", "both.sides")
+
+# Pavyzdþiui, iki trijø raidþiø sutrumpinsime lietuviðkus mënesiø pavadinimus.
+
+mënesiai <- c("Sausis", "Vasaris", "Kovas", "Balandis", 
+              "Geguþë", "Birþelis", "Liepa", "Rugpjûtis", 
+              "Rugsëjis", "Spalis", "Lapkritis", "Gruodis")
+
+abbreviate(mënesiai, minlength = 3)
+
+# Naudojant funkcijà strtrim, mënesiø pavadinimai gaunami labiau áprasti, taèiau 
+# dël to, kad sutampa pirmosios trys raidës, rugpjûtis ir rugsëjis neatskiriami.
+# Kartais, pavyzdþiui, sudarant daþniø lentelæ, tai gali sukelti problemø.
+
+strtrim(mënesiai, 3)
+
+# Jei simboliø seka susideda ið keliø þodþiø, sutrumpinimas sudaromas ið pirmøjø
+# tø þodþiø raidþiø. Pavyzdþiui, sudarysime trumpinius ið vardø ir pavardþiø.
+
+vardai <- c("Pierre de Fermat", "Carl Friedrich Gauss", "Alan Mathison Turing")
+
+abbreviate(vardai, minlength = 3)
 
 
 # F-ja toString apjungia vektoriaus elementus á vienà simboliø sekà. Jeigu sekos
