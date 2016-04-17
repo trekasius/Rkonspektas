@@ -30,6 +30,8 @@
 # PASTABOS ------------------------------
 
 #
+# Paraðyti apie funkcijà paste0.
+# Paraðyti apie funkcijà format ir format.info.
 # Sugalvoti daugiau uþdaviniø.
 # 
 
