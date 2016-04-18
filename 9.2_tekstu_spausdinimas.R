@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2016-03-29 | 2016-04-09 | 2016-04-12
+#   Sukurta: 2016-03-29 | 2016-04-09 | 2016-04-12 | 2016-04-19
 #
 
 
@@ -14,6 +14,7 @@
 #
 #   1. Simboliø sekø apjungimas:
 #      * funkcija paste
+#      * funkcija paste0
 #
 #   2. Objektø atvaizdavimas ekrane:
 #      * funkcija print
@@ -30,7 +31,6 @@
 # PASTABOS ------------------------------
 
 #
-# Paraðyti apie funkcijà paste0.
 # Paraðyti apie funkcijà format ir format.info.
 # Sugalvoti daugiau uþdaviniø.
 # 
@@ -76,6 +76,11 @@ paste(LETTERS, letters)
 # tuðèià sekà "".
 
 paste(LETTERS, letters, sep = "")
+
+# Tokiu atveju kartais patogiau naudoti f-jà paste0(...) = paste(..., sep = "").
+
+paste(LETTERS, letters)
+
 
 # Apjungiant raides, kiekvienas vektorius turëjo daug elementø -- tiek, kiek yra
 # raidþiø. Lygiai taip pat galima apjungti dvi sekas ir gauti vienà bendrà sekà.
