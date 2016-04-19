@@ -5,7 +5,7 @@
 #
 #  Autorius: Tomas Rekaðius
 #
-#   Sukurta: 2016-03-29 | 2016-04-17
+#   Sukurta: 2016-03-29 | 2016-04-19
 #
 
 
@@ -22,7 +22,7 @@
 # PASTABOS ------------------------------
 
 #
-# Sugalvoti uþdavinius.
+# Pastabø nëra.
 # 
 
 
@@ -51,7 +51,7 @@ rm(list = ls())
 # á teksto ðablonà ir toká formatuotà tekstà gràþina kaip simboliø sekà.
 
 # Skaièiø atvaizdavimui R dar turi funkcijas formatC, prettyNum, kurios taip pat
-# naudoja ðià ið C kalbos atëjusià tradicijà.
+# naudoja ðià ið C kalbos atëjusià formatavimo tradicijà.
 
 
 # --------------------------------------- #
@@ -155,8 +155,8 @@ formatC(299792458L, format = "e", digits = 1)
 # já vienu atveju, kaip sveikàjá skaièiø, o kitu - kaip realøjá skaièiø su dviem 
 # reikðminiais skaièiais po kablelio.
 
-formatC(299792458L, format = "d", widt = 20)
-formatC(299792458L, format = "f", widt = 20, digits = 2)
+formatC(299792458L, format = "d", width = 20)
+formatC(299792458L, format = "f", width = 20, digits = 2)
 
 
 # Panagrinësime, kaip galima atvaizduoti labai maþà realøjá skaièiø. Pavyzdþiui,
@@ -345,12 +345,18 @@ prettyNum(z, zero.print = FALSE)  # nerodomi nuliai
 
 # UÞDUOTIS ------------------------------ 
 
-# 1. 
-#    
-# 2. 
-#    
-# 3. 
-#    
+# 1. Ðviesos greitá c = 299792458 m/s uþraðykite standartine skaièiaus iðraiðka.
+#    Skaièius turi bûtø vaizduojamas su trimis skaitmenimis po kablelio.
+# 2. Uþraðykite komandà, kuri sukurtø sunumeruotø failø sekà pagal toká ðablonà: 
+#    failas_001.txt, failas_002.txt, ..., failas_100.txt.
+# 3. Merseno pirminiai skaièiai iðreiðkiami formule M = 2^p - 1, kur p taip pat
+#    pirminis. Didþiausias ðiuo metu þinomas pirminis skaièius tuo paèiu yra ir
+#    Merseno pirminis skaièius su parametru p = 74207281. Jis turi net 22338618 
+#    skaitmenø ir sutrumpintai þymimas M74207281. Maþesni Merseno skaièiai taip
+#    pat yra dideli, pavyzdþiui, M127 = 170141183460469231731687303715884105727, 
+#    jo parametras p = 127. Naudojant funkcijà formatC, skaièiø M127 uþraðykite 
+#    suskirstydami skaitmenis á grupes, kad ið to bûtø galima lengvai vizualiai
+#    nustatyti jø skaièiø.
 
 
 # --------------------------------------- #
@@ -523,10 +529,13 @@ sprintf("Oro temperatûra kinta nuo %+.1f iki %+.1f.", t.min, t.max)
 # 1. Tarkime, kad duoti trys sveikieji skaièiai, kurie nurodo: valandas, minutes
 #    ir sekundes. Uþraðykite komandà, kuri ið ðiø skaièiø uþraðytø laikà áprastu
 #    HH:MM:SS formatu.
-# 2. 
-#    
-# 3. 
-#    
+# 2. Panaudojant funkcijà Sys.time(), uþraðykite komandà, kuri á konsolæ iðvestø 
+#    praneðimà apie laikà, pavyzdþiui: "Ðiuo metu yra XX valandø ir YY minuèiø".
+# 3. Ið statistikos kurso þinoma, kad statistinë hipotezë priimama arba atmetama
+#    pagal p-reikðmæ: jeigu p-reikðmë maþesnë uþ pasirinktà reikðmingumo lygmená
+#    alpha, tada hipotezë atmetama, o prieðingu atveju -- priimama. Tarkime, kad
+#    p-reikðmë þinoma, o alpha = 0.05. Uþraðykite komandà, kuri á ekranà iðvestø 
+#    p-reikðmæ, alpha ir iðvadà apie tai, ar hipotezë priimama, ar atmetama.
 
 
 # --------------------------------------- #
@@ -640,7 +649,7 @@ N <- 10
 
 for (i in 1:N) {
 
-  # Ásivaizduojamas skaièiavimø blokas
+  # Ásivaizduojamas skaièiavimø blokas.
   Sys.sleep(runif(1))
 
   # Iðvedame informacijà apie iteracijos numerá.
@@ -679,7 +688,7 @@ start <- Sys.time()
 
 for (i in 1:N) {
 
-  # Ásivaizduojamas skaièiavimø blokas
+  # Ásivaizduojamas skaièiavimø blokas.
   Sys.sleep(runif(1, 0, i))
 
   # Iðvedame informacijà apie skaièiavimø laikà.
@@ -698,13 +707,12 @@ for (i in 1:N) {
 #    sekos nariø kitimà laike, kur n ágyja reikðmes 1, 2, ..., 1000. Papildykite
 #    programà taip, kad animuoto grafiko antraðtëje bûtø áraðoma besikeièianti n
 #    reikðmë, kuriai pavaizduoti skirti keturi simboliai, priekyje raðomi nuliai.
-#
-#    x <- cumsum(rnorm(1000))
-#
-#    for (n in 1:1000) {
-#      plot(x[1:n], type = "l", ylim = range(x), xlim = c(1, 1000))
-#    }
-# 2. 
 #    
-# 3. 
-#    
+#    n <- 1000
+#    x <- cumsum(rnorm(n))
+#    for (i in 1:n) plot(x[1:i], type = "l", ylim = range(x), xlim = c(1, n))
+#
+# 2. Sudarykite tokià f-jà, kurios argumentas yra 1 x 2 dydþio daþniø lentelë, o
+#    rezultatas yra tekstinis praneðimas, koks yra vienos ið reikðmiø procentas.
+#    Tarkime, duota daþniø lentelë: dd <- as.table(c(`FALSE` = 26, `TRUE` = 9)).
+#    Tada praneðimas galëtø bûti toks: "TRUE reikðmiø yra 25.7 %".
