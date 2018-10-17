@@ -32,7 +32,9 @@
 # PASTABOS ------------------------------
 
 #
-# Kol kas pastabø nëra.
+# Paminëti funkcijà modifyList.
+# Kaþkur reikia paraðyti, kad sàraðui galima suteikti dimensijà -- iðdëstyti
+# sàraðo elementus kaip matricà.
 # 
 
 

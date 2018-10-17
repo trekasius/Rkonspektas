@@ -35,7 +35,7 @@
 # PASTABOS ------------------------------
 
 #
-# Kol kas pastabø nëra.
+# Paraðyti apie drop = FALSE iðmetant kintamuosius ið lentelës.
 # 
 
 

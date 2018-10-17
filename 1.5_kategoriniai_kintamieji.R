@@ -36,6 +36,7 @@
 
 #
 # Paraðyti apie funkcijos reorder taikymà.
+# Pridëti funkcijà interaction.
 # 
 
 

@@ -22,7 +22,7 @@
 # PASTABOS ------------------------------
 
 #
-# Pastabø nëra.
+# Paraðyti apie strwrap.
 # 
 
 

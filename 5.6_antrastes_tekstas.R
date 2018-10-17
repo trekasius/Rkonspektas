@@ -27,6 +27,8 @@
 
 #
 # Paraðyti apie funkcijà symbols.
+# Paraðyti atskirà skyriø apie substitute, expression, quote.
+# Paraðyti apie bquote; plot(1:10, a*(1:10), main = bquote(a == .(a))).
 # 
 
 

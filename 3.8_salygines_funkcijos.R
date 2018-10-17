@@ -25,8 +25,13 @@
 # PASTABOS ------------------------------
 
 #
-# Pastabø dar nëra.
-# 
+# Palyginti tapply ir reorder panaudojimà:
+#   
+#   bymedian <- with(InsectSprays, reorder(spray, count, median))
+#   bytapply <- with(InsectSprays, tapply(count, spray, median))
+#   boxplot(count ~ bymedian, data = InsectSprays)
+#   boxplot(count ~ bytapply, data = InsectSprays)
+#
 
 
 # NUSTATYMAI ----------------------------

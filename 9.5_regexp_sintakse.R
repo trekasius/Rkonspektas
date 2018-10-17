@@ -35,6 +35,7 @@
 #
 # Paminëti apie lazy matching.
 # Paraðyti apie ekranavimà su \Q ir \E.
+# Reikia skyrelio apie PERL reg. iðraiðkas.
 # 
 
 

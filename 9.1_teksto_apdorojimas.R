@@ -27,7 +27,7 @@
 # PASTABOS ------------------------------
 
 #
-# Pastabø nëra.
+# Paraðyti apie naujà funkcijà trimws().
 # 
 
 
